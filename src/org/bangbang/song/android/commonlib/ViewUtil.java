@@ -2,15 +2,27 @@ package org.bangbang.song.android.commonlib;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.MeasureSpec;
 
 public class ViewUtil {
 
     private static final String TAG = ViewUtil.class.getSimpleName();
 
-    public static Bitmap getBitmapX(View focus, int newWidth, int newHeight) {
+    public static void offsetRectBetween(View source, View dest, Rect rect) {
+        View root = source.getRootView();
+        if (root instanceof ViewGroup) {
+            ((ViewGroup) root).offsetDescendantRectToMyCoords(source, rect);
+            ((ViewGroup) root).offsetRectIntoDescendantCoords(dest, rect);
+        } else {
+            Log.e(TAG, "view's parent is NOT a ViewGroup.");
+        }
+    }
+    
+    public static Bitmap getBitmap(View focus, int newWidth, int newHeight) {
         int oldWidth = focus.getWidth();
         int oldHeight = focus.getHeight();
         int oldLeft = focus.getLeft();
