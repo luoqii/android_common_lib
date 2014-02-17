@@ -46,7 +46,7 @@ public class ViewUtil {
         focus.measure(oldWSpec, oldHSpec);
         focus.layout(oldLeft, oldTop, oldLeft + oldWidth, oldTop + oldHeight);
         
-        Log.d(TAG, "bitmap w: " + bitmap.getWidth() + " h: " + bitmap.getHeight());
+//        Log.d(TAG, "bitmap w: " + bitmap.getWidth() + " h: " + bitmap.getHeight());
         return bitmap;
     }
 
