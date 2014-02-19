@@ -1,12 +1,17 @@
 package org.bangbang.song.android.commonlib;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ViewUtil {
 
@@ -49,6 +54,55 @@ public class ViewUtil {
 //        Log.d(TAG, "bitmap w: " + bitmap.getWidth() + " h: " + bitmap.getHeight());
         return bitmap;
     }
-
+    
+    /**
+     * @param group
+     * @param searched
+     * @param flags
+     * @return
+     * @see {@link android.view.View#FIND_VIEWS_WITH_TEXT}
+     * @see {@link android.view.View#FIND_VIEWS_WITH_CONTENT_DESCRIPTION}
+     * @see {@link android.view.View#findViewsWithText(ArrayList, CharSequence, int)}
+     */
+    public static void findViewsWithText(ViewGroup group, List<View> views, CharSequence searched, int flags) {
+        if (TextUtils.isEmpty(searched)) {
+            return;
+        }
+        
+        if ((flags & View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION) != 0) {
+            CharSequence contentDescription = group.getContentDescription();
+            if (searched.equals(contentDescription)) {
+                views.add(group);
+            }
+        }
+        
+        int childCount = group.getChildCount();
+        for (int i = 0 ; i < childCount; i++) {
+            View child = group.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                findViewsWithText((ViewGroup)child, views, searched, flags);
+            } else {
+                findViewsWithText(child, views, searched, flags);
+            }
+        }
+    }
+    
+    private static void findViewsWithText(View view, List<View> views, CharSequence searched, int flags) {
+        if (TextUtils.isEmpty(searched)) {
+            return;
+        }
+        
+        if ((flags & View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION) != 0) {
+            CharSequence contentDescription = view.getContentDescription();
+            if (searched == contentDescription) {
+                views.add(view);
+            }
+        } else if ((flags & View.FIND_VIEWS_WITH_TEXT) != 0 && view instanceof TextView){
+            CharSequence text = ((TextView)view).getText();
+            if (searched.equals(text)) {
+                views.add(view);
+            }
+        }
+    }
   
 }
