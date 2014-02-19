@@ -12,11 +12,11 @@ public class ViewUtil {
 
     private static final String TAG = ViewUtil.class.getSimpleName();
 
-    public static void offsetRectBetween(View source, View dest, Rect rect) {
+    public static void offsetRectBetween(View source, View dest, Rect rectInSource) {
         View root = source.getRootView();
         if (root instanceof ViewGroup) {
-            ((ViewGroup) root).offsetDescendantRectToMyCoords(source, rect);
-            ((ViewGroup) root).offsetRectIntoDescendantCoords(dest, rect);
+            ((ViewGroup) root).offsetDescendantRectToMyCoords(source, rectInSource);
+            ((ViewGroup) root).offsetRectIntoDescendantCoords(dest, rectInSource);
         } else {
             Log.e(TAG, "view's parent is NOT a ViewGroup.");
         }
