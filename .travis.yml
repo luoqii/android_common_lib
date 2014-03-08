@@ -37,5 +37,5 @@ script:
     - ./run_test.ant
 
     - cd test/uiautomator
-    - chmod a+x run_text.sh
+    - chmod a+x run_test.sh
     - ./run_test.sh
