@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
 android update test-project -m ../.. -p .
+ant debug
+ant installd
 ant test
