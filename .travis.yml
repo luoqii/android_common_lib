@@ -24,4 +24,8 @@ before_install:
 #    - emulator -avd test -no-skin -no-audio -no-window &
     - android update project -p . -t $ANDROID_TARGET
 
-script: ant debug  
+script:
+    - ant debug  
+    - chmod a+x test/unit/run_test.ant
+    - ./test/unit/run_test.ant
+

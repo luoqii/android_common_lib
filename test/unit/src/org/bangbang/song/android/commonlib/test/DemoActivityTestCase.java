@@ -1,11 +1,12 @@
 package org.bangbang.song.android.commonlib.test;
 
 import org.bangbang.song.android.Demo;
-import org.bangbang.song.android.MainActivity;
+import org.bangbang.song.android.commonlib.R;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.test.ViewAsserts;
+import android.test.suitebuilder.annotation.SmallTest;
+import android.view.View;
 
 public class DemoActivityTestCase extends ActivityInstrumentationTestCase2<Demo> {
 	private Demo mAct;
@@ -22,7 +23,15 @@ public class DemoActivityTestCase extends ActivityInstrumentationTestCase2<Demo>
 		 mAct = getActivity();
 	}
 	
+	@SmallTest
 	public void testPreconditions() {
 		assertNotNull("activity is null", mAct);
+	}
+	
+	public void test_contentIsVisiable(){
+		final View decorView = mAct.getWindow().getDecorView();
+		View contentView = mAct.findViewById(R.id.content);
+		ViewAsserts.assertOnScreen(decorView, contentView);
+		assertTrue(View.VISIBLE == contentView.getVisibility());
 	}
 }

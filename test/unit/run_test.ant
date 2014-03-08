@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+android update test-project -m ../.. -p .
+ant test
