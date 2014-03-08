@@ -13,6 +13,7 @@ function update_lib_project() {
 #      exit 1
    fi
 
+   android update project -p $lib_project -t $ANDROID_TARGET
    # yes, we do not use "android update lib-project ..." cmd
    android update project -p $project -t $ANDROID_TARGET -l $lib_project
    set_as_lib_project $lib_project
