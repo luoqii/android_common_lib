@@ -73,3 +73,10 @@ function wait_for_emulator() {
   echo "Done"
 }
 
+function dump_sys() {
+  lscpu
+  df
+  free
+}
+ 
+dump_sys
