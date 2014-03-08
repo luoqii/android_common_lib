@@ -32,6 +32,8 @@ install:
 #    - ./buildscript/lib/wait_for_emulator
 
 script:
+    - source  ./buildscript/lib/common.sh
+    - set_as_lib_project . false
     - ant debug  
 
     - adb wait-for-device 
