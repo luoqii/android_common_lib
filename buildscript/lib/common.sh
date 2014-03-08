@@ -17,6 +17,14 @@ function update_lib_project() {
    # yes, we do not use "android update lib-project ..." cmd
    android update project -p $project -t $ANDROID_TARGET -l $lib_project
    set_as_lib_project $lib_project
+
+   if [ "x$DEBUG_UPDATE_PROJECT" != "x" ] ; then
+       cat $project/project.properties
+       cat $project/build.xml       
+
+       cat $lib_project/project.properties
+       cat $lib_project/build.xml
+   fi
 } 
 
 # $1 lib-project path
@@ -33,6 +41,10 @@ function set_as_lib_project() {
       sed   -e "/^[ \t]*android\.library[ \t]*=[ \t]*.*/ s/^[ \t]*\(android\.library\)[ \t]*=[ \t]*.*/\1=$lib/ " $p_bak > $p_file
    else 
       echo "android.library=$lib" >> $p_file
+   fi
+
+   if [ "x$DEBUG_UPDATE_PROJECT" != "x" ] ; then
+       cat $p_file
    fi
 }
 
