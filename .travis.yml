@@ -23,6 +23,8 @@ before_install:
     - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - emulator -avd test -no-skin -no-audio -no-window &
     - adb wait-for-device 
+    - chmod a+x wait_for_emulator
+    - ./wait_for_emulator
     - android update project -p . -t $ANDROID_TARGET
 
 script:
