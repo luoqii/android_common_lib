@@ -31,5 +31,6 @@ script:
     - ant debug  
     - cd test/unit
     - chmod a+x run_test.ant
+    - adb devices
     - ./run_test.ant
 

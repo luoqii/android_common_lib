@@ -1,4 +1,5 @@
 #!/bin/bash
+# copied from https://github.com/leviwilson/android-travis-ci-example
 
 bootanim=""
 failcounter=0
