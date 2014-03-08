@@ -2,7 +2,7 @@
 
 export PROJECT_NAME=uiautomator
 
-adb shell am start org.bangbang.song.android.commonlib/org.bangbang.song.android.Demo
+adb shell am start org.bangbang.song.android.commonlib/org.bangbang.song.android.MainActivity
 
 android create uitest-project -n $PROJECT_NAME -t $ANDROID_TARGET -p .
 ant build
