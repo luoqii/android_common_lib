@@ -29,6 +29,8 @@ before_install:
 
 script:
     - ant debug  
+    - ant installd
+
     - cd test/unit
     - chmod a+x run_test.ant
     - adb devices
