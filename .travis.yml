@@ -36,6 +36,7 @@ script:
     - adb devices
     - ./run_test.ant
 
+    - cd ../..
     - cd test/uiautomator
     - chmod a+x run_test.sh
     - ./run_test.sh
