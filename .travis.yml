@@ -28,8 +28,6 @@ before_install:
     - android update project -p . -t $ANDROID_TARGET
 
 install:
-#    - chmod a+x ./buildscript/lib/wait_for_emulator
-#    - ./buildscript/lib/wait_for_emulator
 
 script:
     - source  ./buildscript/lib/common.sh
@@ -37,8 +35,7 @@ script:
     - ant debug  
 
     - adb wait-for-device 
-    - chmod a+x ./buildscript/lib/wait_for_emulator
-    - ./buildscript/lib/wait_for_emulator
+    - wait_for_emulator
 
     - ant installd
 
