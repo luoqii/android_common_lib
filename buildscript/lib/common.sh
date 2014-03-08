@@ -13,7 +13,8 @@ function update_lib_project() {
 #      exit 1
    fi
 
-   android update lib-project -p $project -t $ANDROID_TARGET -l $lib_project
+   # yes, we do not use "android update lib-project ..." cmd
+   android update project -p $project -t $ANDROID_TARGET -l $lib_project
    set_as_lib_project $lib_project
 } 
 
@@ -41,4 +42,3 @@ function file_content_match() {
    return $?
 }
 
-#set_as_lib_project .
