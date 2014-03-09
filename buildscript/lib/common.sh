@@ -13,9 +13,18 @@ function update_lib_project() {
 #      exit 1
    fi
 
+   android update project -p $lib_project -t $ANDROID_TARGET
    # yes, we do not use "android update lib-project ..." cmd
    android update project -p $project -t $ANDROID_TARGET -l $lib_project
    set_as_lib_project $lib_project
+
+   if [ "x$DEBUG_UPDATE_PROJECT" != "x" ] ; then
+       cat $project/project.properties
+       cat $project/build.xml       
+
+       cat $lib_project/project.properties
+       cat $lib_project/build.xml
+   fi
 } 
 
 # $1 lib-project path
@@ -33,6 +42,10 @@ function set_as_lib_project() {
    else 
       echo "android.library=$lib" >> $p_file
    fi
+
+   if [ "x$DEBUG_UPDATE_PROJECT" != "x" ] ; then
+       cat $p_file
+   fi
 }
 
 # $1 file
@@ -42,3 +55,28 @@ function file_content_match() {
    return $?
 }
 
+function wait_for_emulator() {
+  local bootanim=""
+  local failcounter=0
+  until [[ "$bootanim" =~ "stopped" ]]; do
+       bootanim=`adb -e shell getprop init.svc.bootanim 2>&1`
+       echo "$bootanim"
+       if [[ "$bootanim" =~ "not found" ]]; then
+           let "failcounter += 1"
+           if [[ $failcounter -gt 3 ]]; then
+              echo "Failed to start emulator"
+              exit 1
+           fi
+        fi
+  sleep 1
+  done
+  echo "Done"
+}
+
+function dump_sys() {
+  lscpu
+  df
+  free
+}
+ 
+dump_sys

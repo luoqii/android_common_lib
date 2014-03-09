@@ -22,13 +22,21 @@ before_install:
     - android list target
     - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - emulator -avd test -no-skin -no-audio -no-window &
-    - adb wait-for-device 
-    - chmod a+x wait_for_emulator
-    - ./wait_for_emulator
+
+# do this as later as possiable
+#    - adb wait-for-device 
     - android update project -p . -t $ANDROID_TARGET
 
+install:
+
 script:
+    - source  ./buildscript/lib/common.sh
+    - set_as_lib_project . false
     - ant debug  
+
+    - adb wait-for-device 
+    - wait_for_emulator
+
     - ant installd
 
     - cd test/unit
