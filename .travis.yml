@@ -34,7 +34,7 @@ script:
     - set_as_lib_project . false
     - ant debug  
 
-    - adb wait-for-device 
+#    - adb wait-for-device 
     - wait_for_emulator
 
     - ant installd
