@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 
 /**
  * add log message to {@link Log}
@@ -24,6 +25,10 @@ public class LogActivity extends Activity {
 		return false;
 	}
 	protected boolean needLogKey() {
+		return false;
+	}
+	private boolean needLogTouchEvent() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	protected boolean needLogActivityResult() {
@@ -205,6 +210,53 @@ public class LogActivity extends Activity {
 		
 		if (needLogKey()){
 			log("dispatchKeyShortcutEvent(). handled: " + handled + " event: " + event);
+		}
+		return handled;
+	}
+	@Override
+	public boolean dispatchTrackballEvent(MotionEvent event) {
+		boolean handled =   super.dispatchTrackballEvent(event);		
+		
+		if (needLogKey()){
+			log("dispatchTrackballEvent(). handled: " + handled + " event: " + event);
+		}
+		return handled;
+	}
+	@Override
+	public boolean onTrackballEvent(MotionEvent event) {
+		boolean handled =   super.onTrackballEvent(event);	
+		
+		if (needLogKey()){
+			log("onTrackballEvent(). handled: " + handled + " event: " + event);
+		}
+		return handled;
+	}
+	
+	// touch event
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		boolean handled =  super.onTouchEvent(event);
+		
+		if (needLogTouchEvent()){
+			log("onTouchEvent(). handled: " + handled + " event: " + event);
+		}
+		return handled;
+	}
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent event) {
+		boolean handled =  super.dispatchTouchEvent(event);
+		
+		if (needLogTouchEvent()){
+			log("dispatchTouchEvent(). handled: " + handled + " event: " + event);
+		}
+		return handled;
+	}
+	@Override
+	public boolean dispatchGenericMotionEvent(MotionEvent event) {
+		boolean handled =  super.dispatchGenericMotionEvent(event);
+		
+		if (needLogTouchEvent()){
+			log("dispatchGenericMotionEvent(). handled: " + handled + " event: " + event);
 		}
 		return handled;
 	}
