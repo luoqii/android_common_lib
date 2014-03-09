@@ -27,8 +27,7 @@ public class LogActivity extends Activity {
 	protected boolean needLogKey() {
 		return false;
 	}
-	private boolean needLogTouchEvent() {
-		// TODO Auto-generated method stub
+	protected boolean needLogTouchEvent() {
 		return false;
 	}
 	protected boolean needLogActivityResult() {
