@@ -7,10 +7,12 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <!-- disable keyguard in auto test. -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
 
     <application
         android:allowBackup="true"
-        name="org.bangbang.song.android.commonlib.Application"
+        android:name="org.bangbang.song.android.Application"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >

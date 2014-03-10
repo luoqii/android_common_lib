@@ -1,9 +1,10 @@
 package org.bangbang.song.android;
 
 import org.bangbang.song.android.commonlib.ThreadUtil;
+import org.bangbang.song.android.commonlib.activity.LogApplication;
 
 
-public class Application extends android.app.Application {
+public class Application extends LogApplication {
     private static final String TAG = Application.class.getSimpleName();
     
     @Override
@@ -11,6 +12,6 @@ public class Application extends android.app.Application {
         // TODO Auto-generated method stub
         super.onCreate();
         
-//        ThreadUtil.sleepSafely(5 * 1000);
+//        ThreadUtil.sleepSafely(8 * 1000);
     }
 }
