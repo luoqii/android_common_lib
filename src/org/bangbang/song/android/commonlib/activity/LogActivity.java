@@ -185,7 +185,7 @@ public class LogActivity extends Activity {
 		
 		return handled;
 	}
-	@Override
+	//lint @Override
 	public boolean onKeyShortcut(int keyCode, KeyEvent event) {
 		boolean handled =  super.onKeyShortcut(keyCode, event);
 		
@@ -250,7 +250,7 @@ public class LogActivity extends Activity {
 		}
 		return handled;
 	}
-	@Override
+	//lint @Override
 	public boolean dispatchGenericMotionEvent(MotionEvent event) {
 		boolean handled =  super.dispatchGenericMotionEvent(event);
 		
@@ -269,7 +269,7 @@ public class LogActivity extends Activity {
 			log("onLowMemory().");
 		}
 	}
-	@Override
+	//lint @Override
 	public void onTrimMemory(int level) {
 		super.onTrimMemory(level);
 		
@@ -279,7 +279,7 @@ public class LogActivity extends Activity {
 	}
 
 	// activity result
-	@Override
+	//lint @Override
 	public void startActivityForResult(Intent intent, int requestCode,
 			Bundle options) {
 		super.startActivityForResult(intent, requestCode, options);
