@@ -203,7 +203,7 @@ public class LogActivity extends Activity {
 		}
 		return handled;
 	}
-	@Override
+	//lint @Override
 	public boolean dispatchKeyShortcutEvent(KeyEvent event) {
 		boolean handled =  super.dispatchKeyShortcutEvent(event);
 		
