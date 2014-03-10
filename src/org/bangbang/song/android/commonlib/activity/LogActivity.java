@@ -1,7 +1,10 @@
 package org.bangbang.song.android.commonlib.activity;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -165,8 +168,10 @@ public class LogActivity extends Activity {
 		}
 		return handled;
 	}
-	@Override
-	public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+	//lint @Override
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.ECLAIR)
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
 		boolean handled =  super.onKeyLongPress(keyCode, event);
 		
 		if (needLogKey()){
@@ -186,7 +191,9 @@ public class LogActivity extends Activity {
 		return handled;
 	}
 	//lint @Override
-	public boolean onKeyShortcut(int keyCode, KeyEvent event) {
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public boolean onKeyShortcut(int keyCode, KeyEvent event) {
 		boolean handled =  super.onKeyShortcut(keyCode, event);
 		
 		if (needLogKey()){
@@ -204,7 +211,9 @@ public class LogActivity extends Activity {
 		return handled;
 	}
 	//lint @Override
-	public boolean dispatchKeyShortcutEvent(KeyEvent event) {
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public boolean dispatchKeyShortcutEvent(KeyEvent event) {
 		boolean handled =  super.dispatchKeyShortcutEvent(event);
 		
 		if (needLogKey()){
@@ -251,7 +260,9 @@ public class LogActivity extends Activity {
 		return handled;
 	}
 	//lint @Override
-	public boolean dispatchGenericMotionEvent(MotionEvent event) {
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+    public boolean dispatchGenericMotionEvent(MotionEvent event) {
 		boolean handled =  super.dispatchGenericMotionEvent(event);
 		
 		if (needLogTouchEvent()){
@@ -270,7 +281,9 @@ public class LogActivity extends Activity {
 		}
 	}
 	//lint @Override
-	public void onTrimMemory(int level) {
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public void onTrimMemory(int level) {
 		super.onTrimMemory(level);
 		
 		if (needLogMemory()) {
@@ -280,7 +293,9 @@ public class LogActivity extends Activity {
 
 	// activity result
 	//lint @Override
-	public void startActivityForResult(Intent intent, int requestCode,
+	@SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void startActivityForResult(Intent intent, int requestCode,
 			Bundle options) {
 		super.startActivityForResult(intent, requestCode, options);
 		

@@ -1,6 +1,9 @@
 package org.bangbang.song.android.commonlib.activity;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 
 public class LogApplication extends Application {
@@ -44,6 +47,8 @@ public class LogApplication extends Application {
         }
     }
     //lint @Override
+    @SuppressLint("NewApi")
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         
