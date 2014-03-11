@@ -8,6 +8,9 @@ env:
     - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
+ 
+    - env
+
     - export INSTALL_PGK="libgd2-xpm ia32-libs ia32-libs-multiarch expect"
     - sudo apt-get update -qq
     - if [ `uname -m` = x86_64 ] ; then sudo apt-get install -qq --force-yes $INSTALL_PGK ; fi 
@@ -34,7 +37,7 @@ before_install:
     - expect -d -c "spawn android update sdk --filter extra-android-support --no-ui --force" android.update.sdk.expect
     - expect -d -c "spawn android update sdk --filter $ANDROID_IMGS --no-ui --force" android.update.sdk.expect
 #    - expect -d -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect 
-    - android list target
+    - android list
     - export EMULATOR_NAME=test
     - expect -d -c "spawn android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
 #    - android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force
