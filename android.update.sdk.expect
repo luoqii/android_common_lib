@@ -2,5 +2,4 @@
 for {} {1} {} {
    expect eof {break}               
    expect "*Do*you*accept*the*license*" {send "y\n"}
-#   expect "*"                 {send "y\n"}
 }
