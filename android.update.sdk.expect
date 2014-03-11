@@ -1,7 +1,6 @@
 #spawn android create avd -n bbb -t 2 --abi x86 --force
 for {} {1} {} {
-   expect eof                  {send "y\n" 
-                                break}
+   expect eof {break}               
    expect "*Do*you*accept*the*license*" {send "y\n"}
-   expect "*\n"                 {send "y\n"}
+   expect "*"                 {send "y\n"}
 }

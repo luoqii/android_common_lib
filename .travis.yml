@@ -23,13 +23,13 @@ before_install:
     - android list sdk --extended 
     - android list sdk --extended --all
 
-    - echo y | android update sdk --filter build-tools-19.0.3 --no-ui --force
-    - echo y | android update sdk --filter platform-tools --no-ui --force
-    - echo y | android update sdk --filter $ANDROID_TARGET --no-ui --force
-    - echo y | android update sdk --filter extra-android-support --no-ui --force
-    - echo y | android update sdk --filter $ANDROID_IMGS --no-ui --force
-#    - expect -d -c "spawn android update sdk --filter build-tools-19.0.3 --no-ui --force" android.update.sdk.expect
-#    - expect -d -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect
+#    - echo y | android update sdk --filter build-tools-19.0.3 --no-ui --force
+#    - echo y | android update sdk --filter platform-tools --no-ui --force
+#    - echo y | android update sdk --filter $ANDROID_TARGET --no-ui --force
+#    - echo y | android update sdk --filter extra-android-support --no-ui --force
+#    - echo y | android update sdk --filter $ANDROID_IMGS --no-ui --force
+    - expect -d -c "spawn android update sdk --filter build-tools-19.0.3 --no-ui --force" android.update.sdk.expect
+    - expect -d -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect
     - android list target
 #    - echo yes | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - export EMULATOR_NAME=test

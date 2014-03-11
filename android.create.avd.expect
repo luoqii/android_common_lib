@@ -5,7 +5,4 @@ for {} {1} {} {
    expect "*custom*hardware*" {send "yes\n"}
    expect "*hardware*profile*" {send "yes\n"}
    expect "*"                 {send "\n"}
-#   expect "*<build>*"          {send "\n"}
-#   expect "*disk.cachePartition.path*" {send "\n"}
-#   expect "*disk.cachePartition*" {send "yes\n"}
 }
