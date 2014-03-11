@@ -1,9 +1,6 @@
 #spawn android create avd -n bbb -t 2 --abi x86 --force
-for {1}  {
+for {} {1} {} {
    expect eof                  {break}
    expect "*Do*you*accept*the*license*" {send "y\n"}
    expect "*\n"                 {send "y\n"}
-#   expect "*<build>*"          {send "\n"}
-#   expect "*disk.cachePartition.path*" {send "\n"}
-#   expect "*disk.cachePartition*" {send "yes\n"}
 }
