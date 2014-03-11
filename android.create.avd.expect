@@ -1,9 +1,10 @@
 #spawn android create avd -n bbb -t 2 --abi x86 --force
+set timeout 1
 for {} {1} {} {
    expect eof                  {break}
-   expect "*custom*hardware*\n" {send "yes\n"}
-   expect "*hardware*profile*\n" {send "yes\n"}
-   expect "*\n"                 {send "\n"}
+   expect "*custom*hardware*" {send "yes\n"}
+   expect "*hardware*profile*" {send "yes\n"}
+   expect "*"                 {send "\n"}
 #   expect "*<build>*"          {send "\n"}
 #   expect "*disk.cachePartition.path*" {send "\n"}
 #   expect "*disk.cachePartition*" {send "yes\n"}
