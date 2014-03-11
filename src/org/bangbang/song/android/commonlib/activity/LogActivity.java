@@ -15,6 +15,7 @@ import android.view.MotionEvent;
  * @author bangbang.song@gmail.com
  *
  * @see #needLogLifecycle() ant others.
+ * @see #viewServerEnabled()
  */
 public class LogActivity extends Activity {
 	
@@ -36,7 +37,15 @@ public class LogActivity extends Activity {
 	protected boolean needLogActivityResult() {
 		return false;
 	}
-	protected void log(String message) {
+	/**
+	 * for some device, hierarchy view do not work, in this case,
+	 * you neeed this.
+	 * @return
+	 */
+	protected boolean viewServerEnabled() {
+        return false;
+    }
+    protected void log(String message) {
 		Log.d(getClass().getSimpleName(), message);
 	}
 	
@@ -47,6 +56,10 @@ public class LogActivity extends Activity {
 		
 		if (needLogLifecycle() || needLogSaveInstance()){
 			log("onCreate(). savedInstanceState: " + savedInstanceState);
+		}
+		
+		if (viewServerEnabled()) {
+		    ViewServer.get(this).addWindow(this);
 		}
 	}
 	@Override
@@ -80,6 +93,10 @@ public class LogActivity extends Activity {
 		if (needLogLifecycle()){
 			log("onResume().");
 		}
+		
+		if (viewServerEnabled()) {
+		    ViewServer.get(this).setFocusedWindow(this);
+		}
 	}
 	@Override
 	protected void onPostResume() {
@@ -111,6 +128,10 @@ public class LogActivity extends Activity {
 		
 		if (needLogLifecycle()){
 			log("onDestroy().");
+		}
+		
+		if (viewServerEnabled()) {
+		    ViewServer.get(this).removeWindow(this);
 		}
 	}
 	
