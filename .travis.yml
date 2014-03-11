@@ -40,6 +40,8 @@ before_install:
     - android list
     - export EMULATOR_NAME=test
     - tree $ANDROID_HOME/system-images
+    - adb kill-server
+    - adb start-server
     - expect -d -c "spawn android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
 #    - android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force
 
