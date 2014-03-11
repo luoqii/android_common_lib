@@ -1,10 +1,10 @@
-language: java
+anguage: java
 
 env:
     matrix:
-    - ANDROID_SDKS=sysimg-16            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
-    - ANDROID_SDKS=sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
-    - ANDROID_SDKS=sysimg-18,android-18 ANDROID_TARGET=android-18  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-16            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-15            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-17            ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
 
 before_install:
     - sudo apt-get update -qq
@@ -18,9 +18,9 @@ before_install:
     - android list target
    
     # debug
-    - android list sdk --extended
+    - android list sdk --extended --all
 
-    - android update sdk --filter platform-tools,$ANDROID_TARGET,extra-android-support,$ANDROID_SDKS --no-ui --force
+    - android update sdk --filter platform-tools,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force
     - android list target
     - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - emulator -avd test -no-skin -no-audio -no-window &
