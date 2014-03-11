@@ -30,7 +30,10 @@ before_install:
 #    - echo y | android update sdk --filter $ANDROID_IMGS --no-ui --force
     - expect -d -c "spawn android update sdk --filter build-tools-19.0.3 --no-ui --force" android.update.sdk.expect
     - expect -d -c "spawn android update sdk --filter platform-tools --no-ui --force" android.update.sdk.expect
-    - expect -d -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect 
+    - expect -d -c "spawn android update sdk --filter $ANDROID_TARGET --no-ui --force" android.update.sdk.expect
+    - expect -d -c "spawn android update sdk --filter extra-android-support --no-ui --force" android.update.sdk.expect
+    - expect -d -c "spawn android update sdk --filter $ANDROID_IMGS --no-ui --force" android.update.sdk.expect
+#    - expect -d -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect 
     - android list target
     - export EMULATOR_NAME=test
     - expect -d -c "spawn android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
