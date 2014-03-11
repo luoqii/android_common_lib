@@ -8,8 +8,9 @@ env:
     - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
+    - export INSTALL_PGK="libgd2-xpm ia32-libs ia32-libs-multiarch expect"
     - sudo apt-get update -qq
-    - if [ `uname -m` = x86_64 ] ; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch ; fi 
+    - if [ `uname -m` = x86_64 ] ; then sudo apt-get install -qq --force-yes $INSTALL_PGK ; fi 
 
     - export ANDROID_SDK=android-sdk_r22.6-linux.tgz
     - wget http://dl.google.com/android/$ANDROID_SDK
@@ -25,10 +26,13 @@ before_install:
     - echo y | android update sdk --filter build-tools-19.0.3 --no-ui --force
     - echo y | android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force
     - android list target
-    - echo yes | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+#    - echo yes | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+    - export EMULATOR_NAME=test
+    - expect -c "spawn android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
+
     # debug
     - android list avd
-    - emulator -avd test -no-skin -no-audio -no-window &
+    - emulator -avd $EMULATOR_NAME -no-skin -no-audio -no-window &
 
 # do this as later as possiable
 #    - adb wait-for-device 
