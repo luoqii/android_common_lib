@@ -24,7 +24,7 @@ before_install:
     - echo y | android update sdk --filter build-tools-19.0.3 --no-ui --force
     - echo y | android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force
     - android list target
-    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+    - echo yes | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     # debug
     - android list avd
     - emulator -avd test -no-skin -no-audio -no-window &
