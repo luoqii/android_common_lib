@@ -20,7 +20,7 @@ before_install:
     # debug
     - android list sdk --extended
 
-    - android update sdk --filter platform-tools,android-16,extra-android-support,$ANDROID_SDKS --no-ui --force
+    - android update sdk --filter platform-tools,$ANDROID_TARGET,extra-android-support,$ANDROID_SDKS --no-ui --force
     - android list target
     - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - emulator -avd test -no-skin -no-audio -no-window &
