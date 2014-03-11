@@ -10,9 +10,9 @@ before_install:
     - sudo apt-get update -qq
     - if [ `uname -m` = x86_64 ] ; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch ; fi 
 
-    - export LATEST_SDK=android-sdk_r22.6-linux.tgz
-    - wget http://dl.google.com/android/$LATEST_SDK
-    - tar -zxf $LATEST_SDK 
+    - export ANDROID_SDK=android-sdk_r22.6-linux.tgz
+    - wget http://dl.google.com/android/$ANDROID_SDK
+    - tar -zxf $ANDROID_SDK 
     - export ANDROID_HOME=`pwd`/android-sdk-linux
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
@@ -22,7 +22,7 @@ before_install:
     - android list sdk --extended 
     - android list sdk --extended --all
 
-    - echo y | android update sdk --filter platform-tools,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force
+    - echo y | android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force
     - android list target
     - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
     - emulator -avd test -no-skin -no-audio -no-window &
