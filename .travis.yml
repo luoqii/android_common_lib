@@ -42,7 +42,6 @@ before_install:
     - tree $ANDROID_HOME/system-images
     - adb kill-server
     - adb start-server
-    - android 
     - expect -d -c "spawn android --clear-cache -v create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
 #    - android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force
 
