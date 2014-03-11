@@ -1,5 +1,5 @@
 #spawn android create avd -n bbb -t 2 --abi x86 --force
-set timeout 1
+set timeout 0.1
 for {} {1} {} {
    expect eof                  {break}
    expect "*custom*hardware*" {send "yes\n"}

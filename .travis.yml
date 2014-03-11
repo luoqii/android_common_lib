@@ -5,7 +5,7 @@ env:
     - ANDROID_IMGS=sysimg-16            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
 #    - ANDROID_IMGS=sysimg-15            ANDROID_TARGET=android-16  ANDROID_ABI=armeabi-v7a
 #    - ANDROID_IMGS=sysimg-17            ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
-#    - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
     - export INSTALL_PGK="libgd2-xpm ia32-libs ia32-libs-multiarch expect"
