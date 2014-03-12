@@ -24,7 +24,7 @@ before_install:
     - wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
     - unzip adt-bundle-linux-x86_64-20131030.zip -d adt > /dev/null
     - export ANDROID_HOME=`pwd`/adt/adt-bundle-linux-x86_64-20131030/sdk
-    - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+    - export PATH=${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PATH
     # debug
     - which android
     - android list target
