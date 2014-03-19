@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XXX how to fill_parent?
+	bysong -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/log_item"
+    android:autoLink="web|email|map"
+    android:layout_width="2000dp"
+    android:layout_height="fill_parent" >
+
+</TextView>

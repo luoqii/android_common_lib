@@ -6,5 +6,6 @@
     <string name="hello_world">
         Hello world!\n
 welcome to android common lib.</string>
-
+    <string name="lib_share">share</string>
+    <string name="lib_save">save</string>
 </resources>

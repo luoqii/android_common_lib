@@ -9,6 +9,7 @@
         android:targetSdkVersion="17" />
     <!-- disable keyguard in auto test. -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
 
     <application
         android:allowBackup="true"
@@ -28,6 +29,15 @@
         <activity
             android:name="org.bangbang.song.android.Demo"
             android:label="androidcommonlib/demo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.bangbang.song.android.commonlib.activity.LogcatActivity"
+            android:label="androidcommonlib/LogcatActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
