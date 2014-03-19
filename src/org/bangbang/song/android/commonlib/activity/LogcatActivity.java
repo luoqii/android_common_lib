@@ -53,13 +53,16 @@ import android.widget.Toast;
 /**
  * android logcat application output log viewer.
  * 
+ * <pre>
  * need permission android.permission.READ_LOGS
+ * need permission android.permission.WRITE_EXTERNAL_STORAGE if you do not give a 
+ * log dir in {@link #EXTRA_LOG_SAVE_DIR}, or the dir you give live on SDCard.
  * 
  * @author bysong@tudou.com
  * 
  * @see {@link permission#READ_LOGS}
  */
-public class LogcatActivity extends Activity {
+public class LogcatActivity extends LogActivity {
     private static final String TAG = LogcatActivity.class.getSimpleName();
 
     /**
@@ -308,7 +311,7 @@ public class LogcatActivity extends Activity {
         
 		String message = "";
 		if (saved) {
-			message = "log has saved at dir: " + logFile.getParent();
+			message = "log has saved at " + logFile.getPath();
 		} else {
 			message = "save log error at " + logFile.getPath();
 		}

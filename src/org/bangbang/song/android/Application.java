@@ -9,9 +9,18 @@ public class Application extends LogApplication {
     
     @Override
     public void onCreate() {
-        // TODO Auto-generated method stub
         super.onCreate();
         
 //        ThreadUtil.sleepSafely(8 * 1000);
+        ThreadUtil.catchCrashAndShow(this);
+        
+//        npe();
+    }
+
+    private void npe() {
+        String nullString = null;
+        if (nullString.length() == 0) {
+            
+        }
     }
 }
