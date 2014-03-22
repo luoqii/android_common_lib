@@ -2,7 +2,7 @@ language: java
 
 env:
     matrix:
-    - ANDROID_IMGS=sysimg-8            ANDROID_TARGET=android-8  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-8             ANDROID_TARGET=android-8  ANDROID_ABI=armeabi
     - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
