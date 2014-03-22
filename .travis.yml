@@ -1,14 +1,14 @@
 language: java
 env:
     global:
-    - G=blabkjiil
+    - BUILD_ANDROID_TARGET=android-19
 # build with latest sdk, but run on different run-time sdk.
     matrix:
-    - ANDROID_IMGS=sysimg-8     BUILD_ANDROID_TARGET=android-19        RUNTIME_ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
-    - ANDROID_IMGS=sysimg-19    BUILD_ANDROID_TARGET=android-19        RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-8         RUNTIME_ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
+    - ANDROID_IMGS=sysimg-19        RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
- 
+    - export ANDROID_TARGET=$BUILD_ANDROID_TARGET 
     - env
 
     - export INSTALL_PGK="libgd2-xpm ia32-libs ia32-libs-multiarch expect tree"
