@@ -1,11 +1,9 @@
 language: java
-
 env:
 # build with latest sdk, but run on different run-time sdk.
-    - ANDROID_TARGET=android-19
     matrix:
-    - ANDROID_IMGS=sysimg-8             RUNTIME_ANDROID_TARGET=android-8  ANDROID_ABI=armeabi
-    - ANDROID_IMGS=sysimg-19            RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-8     BUILD_ANDROID_TARGET=19        RUNTIME_ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
+    - ANDROID_IMGS=sysimg-19    BUILD_ANDROID_TARGET=19        RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
  
@@ -53,7 +51,7 @@ before_install:
 
 # do this as later as possiable
 #    - adb wait-for-device 
-    - android update project -p . -t $RUNTIME_ANDROID_TARGET
+    - android update project -p . -t $BUILD_ANDROID_TARGET
 
 install:
 
