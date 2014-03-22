@@ -1,9 +1,11 @@
 language: java
 
 env:
+# build with latest sdk, but run on different run-time sdk.
+    - ANDROID_TARGET=android-19
     matrix:
-    - ANDROID_IMGS=sysimg-8             ANDROID_TARGET=android-8  ANDROID_ABI=armeabi
-    - ANDROID_IMGS=sysimg-19            ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+    - ANDROID_IMGS=sysimg-8             RUNTIME_ANDROID_TARGET=android-8  ANDROID_ABI=armeabi
+    - ANDROID_IMGS=sysimg-19            RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
 
 before_install:
  
@@ -32,18 +34,18 @@ before_install:
     - DEBUG_EXPECT=-d
     - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter build-tools-19.0.3 --no-ui --force" android.update.sdk.expect
     - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter platform-tools --no-ui --force" android.update.sdk.expect
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter $ANDROID_TARGET --no-ui --force" android.update.sdk.expect
+    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter $RUNTIME_ANDROID_TARGET --no-ui --force" android.update.sdk.expect
     - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter extra-android-support --no-ui --force" android.update.sdk.expect
 # --all for update old packages.
     - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter $ANDROID_IMGS --no-ui --force --all" android.update.sdk.expect
-#    - expect $DEBUG_EXPECT -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect 
+#    - expect $DEBUG_EXPECT -c "spawn android update sdk --filter platform-tools,build-tools-19.0.3,$RUNTIME_ANDROID_TARGET,extra-android-support,$ANDROID_IMGS --no-ui --force" android.update.sdk.expect 
     - android list
     - export EMULATOR_NAME=test
     - tree $ANDROID_HOME/system-images
     - adb kill-server
     - adb start-server
-    - expect -d -c "spawn android --clear-cache -v create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
-#    - android create avd -n $EMULATOR_NAME -t $ANDROID_TARGET --abi $ANDROID_ABI --force
+    - expect -d -c "spawn android --clear-cache -v create avd -n $EMULATOR_NAME -t $RUNTIME_ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
+#    - android create avd -n $EMULATOR_NAME -t $RUNTIME_ANDROID_TARGET --abi $ANDROID_ABI --force
 
     # debug
     - android list avd
@@ -51,7 +53,7 @@ before_install:
 
 # do this as later as possiable
 #    - adb wait-for-device 
-    - android update project -p . -t $ANDROID_TARGET
+    - android update project -p . -t $RUNTIME_ANDROID_TARGET
 
 install:
 
