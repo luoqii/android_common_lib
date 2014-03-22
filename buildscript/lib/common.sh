@@ -74,8 +74,11 @@ function wait_for_emulator() {
 }
 
 function dump_sys() {
+  echo "cpu info: [lscpu]"
   lscpu
+  echo "df info: [df]"
   df
+  echo "memory info: [free]"
   free
 }
  
