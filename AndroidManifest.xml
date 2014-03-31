@@ -37,6 +37,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="org.bangbang.song.android.DimensionStateListDemo"
+            android:label="androidcommonlib/DimensionStateListDemo" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="org.bangbang.song.android.commonlib.activity.LogcatActivity"
             android:label="androidcommonlib/LogcatActivity" >
             <intent-filter>
