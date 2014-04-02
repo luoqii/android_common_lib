@@ -1,6 +1,6 @@
 package org.bangbang.song.android.commonlib.test;
 
-import org.bangbang.song.android.Demo;
+import org.bangbang.song.android.DemoCrazyClicker;
 import org.bangbang.song.android.commonlib.R;
 
 import android.test.ActivityInstrumentationTestCase2;

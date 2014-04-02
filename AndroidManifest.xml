@@ -28,8 +28,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.bangbang.song.android.Demo"
-            android:label="androidcommonlib/demo" >
+            android:name="org.bangbang.song.android.DemoCrazyClicker"
+            android:label="androidcommonlib/demo crazy clicker" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
