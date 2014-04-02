@@ -11,12 +11,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-//import org.bangbang.song.android.commonlib.FileHierachySpec;
 import org.bangbang.song.android.commonlib.R;
 import org.bangbang.song.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
 
 import android.Manifest.permission;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,6 +47,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+//import org.bangbang.song.android.commonlib.FileHierachySpec;
 
 /**
  * android logcat application output log viewer.

@@ -11,6 +11,7 @@ import org.bangbang.song.android.commonlib.activity.LogcatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 
 public class DemoCrazyClicker extends LogActivity {
     private static final String TAG = DemoCrazyClicker.class.getSimpleName();
@@ -60,5 +61,13 @@ public class DemoCrazyClicker extends LogActivity {
             mCrazyClicker.onClick();
         }
         return super.onKeyDown(keyCode, event);
+    }
+    
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (MotionEvent.ACTION_DOWN == event.getAction()) {
+            mCrazyClicker.onClick();
+        }
+        return super.onTouchEvent(event);
     }
 }

@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="press menu quickly to go to logcat activity" />
+        android:text="press menu key or touch screen quickly to go to logcat activity" />
 
 </RelativeLayout>
