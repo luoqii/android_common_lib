@@ -152,7 +152,7 @@ public abstract class BaseApiDemo extends ListActivity {
     
     protected Intent browseIntent(String path) {
         Intent result = new Intent();
-        result.setClass(this, BaseApiDemo.class);
+        result.setClass(this, getClass());
         result.putExtra(EXTRA_PATH, path);
         return result;
     }
