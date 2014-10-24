@@ -17,7 +17,7 @@ public class ThreadUtil {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
-            ;; // slient is golden.
+            ;; // silent is golden.
         }
     }
     
@@ -28,7 +28,8 @@ public class ThreadUtil {
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
                 PrintStream writer;
-                File crashFile = new File("/sdcard/00_" + app.getPackageName() + "_crash.log.txt");
+                File crashFile = null;
+                // "00" for see this file at first glance .
                 String name = "00_" + app.getPackageName() + "_crash.log.txt";
                 try {
                     crashFile = app.getFileStreamPath(name);
@@ -59,5 +60,15 @@ public class ThreadUtil {
                 original.uncaughtException(thread, ex);
             }
         });
+    }
+    
+    /**
+     * yes, generate a NPE for debug.
+     */
+    public static void npe(){
+    	String npe = null;
+    	if (npe.isEmpty()) {
+    		npe = "";
+    	}
     }
 }

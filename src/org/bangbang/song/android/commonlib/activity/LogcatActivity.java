@@ -11,10 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.bangbang.song.android.commonlib.ActivityUtil;
 import org.bangbang.song.android.commonlib.R;
 import org.bangbang.song.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
 
 import android.Manifest.permission;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,11 +59,17 @@ import android.widget.Toast;
  * need permission android.permission.WRITE_EXTERNAL_STORAGE if you do not give a 
  * log dir in {@link #EXTRA_LOG_SAVE_DIR}, or the dir you give live on SDCard.
  * 
+ * 
+ * @TODO how to see system log???
+ * 
  * @author bysong@tudou.com
  * 
  * @see {@link permission#READ_LOGS}
  */
-public class LogcatActivity extends LogActivity {
+public class LogcatActivity extends 
+                                   LogActivity 
+//                                   Activity
+{
     private static final String TAG = LogcatActivity.class.getSimpleName();
 
     /**
@@ -72,35 +80,60 @@ public class LogcatActivity extends LogActivity {
      * type: {@link String}
      */
     public static final String EXTRA_LOG_SAVE_DIR ="LogcatActivity.EXTRA_LOG_SAVE_DIR";
+    /**
+     * how many logs should output. (by line)
+     * 
+     * type: {@link Integer}
+     */
+    public static final String EXTRA_LOG_LIMIT ="LogcatActivity.EXTRA_LOG_LIMIT";
+    
+    private static final int DEFAULT_LOG_LIMIT = 1000;
 
     private Spinner mFilter;
-    private FilterSpec[] mSpecs;
+    private FilterSpec[] mFilterSpecs;
     private ArrayAdapter<FilterSpec> mSpecAdapter;
+    
     private EditText mRealTimeFilter;
-    private Spinner mFilterLevel;
+    protected FilterSpec mTemplateSpec;
+    protected FilterSpec mRealTimeFilterSpec;
+    protected String mRealFilterText;
+    protected LevelSpec mRealFilterLevel;
+    
+    private Spinner mRealTimeFilterLevel;
 
     private ListView mLogs;
     private FilterLogAdapter mAdapter;
-
-    private static final int LOG_LIMIT = 1000;
 
     private static final String REAL_TIME_FILTER = "pref_real_time_filter";
     private static LogcatProcess mLogcat;
     private Handler mH;
 
-    protected FilterSpec mTemplateSpec;
-    protected FilterSpec mRealTimeFilterSpec;
-    protected String mRealFilterText;
-    protected LevelSpec mRealFilterLevel;
-
     private String mLogSaveDir;
+
+	private int mLogLimit;
+    
+    private static final String[] CMD = {
+            // DATE TIME PID TID LEVEL TAG MESSAGE
+            "/system/bin/logcat", "-v", "threadtime"
+    };
+    //                    DATE      TIME       PID      TID      LEVEL     TAG      MESSAGE
+    private static final String REG = "(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(.*$)";
+    private static final Pattern PATTERN = Pattern.compile(REG);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
+        // init this before parseIntent().
+        mFilterSpecs = new FilterSpec[] {
+                new FilterSpec.ALL(), new FilterSpec.V(),
+                new FilterSpec.I(), new FilterSpec.W(),
+                new FilterSpec.D(), new FilterSpec.E()
+        };
+        parseIntent(getIntent());
+        
         if (null == mLogcat) {
-            mLogcat = new LogcatProcess(LOG_LIMIT);
+            mLogcat = new LogcatProcess(mLogLimit);
         }
         mLogcat.setOnLogListerner(new OnLogListener() {
 
@@ -127,17 +160,9 @@ public class LogcatActivity extends LogActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);        
         setContentView(R.layout.lib_logcat);
         
-        // init this before parseIntent().
-        mSpecs = new FilterSpec[] {
-                new FilterSpec.ALL(), new FilterSpec.V(),
-                new FilterSpec.I(), new FilterSpec.W(),
-                new FilterSpec.D(), new FilterSpec.E()
-        };
-        parseIntent(getIntent());
-        
         mFilter = ((Spinner) findViewById(R.id.filter));
         mSpecAdapter = new ArrayAdapter<FilterSpec>(this, android.R.layout.simple_spinner_item,
-                mSpecs);
+                mFilterSpecs);
         mSpecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mFilter.setAdapter(mSpecAdapter);
         mFilter.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -170,13 +195,13 @@ public class LogcatActivity extends LogActivity {
                 updateFilter();
             }
         });         
-        mFilterLevel = ((Spinner) findViewById(R.id.real_time_level));
+        mRealTimeFilterLevel = ((Spinner) findViewById(R.id.real_time_level));
         LevelSpec[] levelSpecs = new LevelSpec[]{new LevelSpec.ALL(), new LevelSpec.E(),
                 new LevelSpec.D(), new LevelSpec.W(), new LevelSpec.I(), new LevelSpec.V()};
         ArrayAdapter<LevelSpec> adapter = new ArrayAdapter<LogcatActivity.LevelSpec>(this, android.R.layout.simple_spinner_item, levelSpecs);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mFilterLevel.setAdapter(adapter);
-        mFilterLevel.setOnItemSelectedListener(new OnItemSelectedListener() {
+        mRealTimeFilterLevel.setAdapter(adapter);
+        mRealTimeFilterLevel.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -191,7 +216,7 @@ public class LogcatActivity extends LogActivity {
         });
         
         mLogs = ((ListView) findViewById(R.id.logs));
-        mAdapter = new FilterLogAdapter(this, R.layout.lib_log_info_item, LOG_LIMIT);
+        mAdapter = new FilterLogAdapter(this, R.layout.lib_log_info_item, mLogLimit);
         mAdapter.setFilter(new Filter(new FilterSpec.ALL()));
         mLogs.setAdapter(mAdapter);
         mLogs.setOnScrollListener(new OnScrollListener() {
@@ -232,6 +257,8 @@ public class LogcatActivity extends LogActivity {
             mLogSaveDir = Environment.getExternalStorageDirectory().getPath();
         }
         
+        mLogLimit = intent.getIntExtra(EXTRA_LOG_LIMIT, DEFAULT_LOG_LIMIT);
+        
         Parcelable p = intent.getParcelableExtra(EXTRA_FILTER_SPEC);
         if (null == p) {
             Log.w(TAG, "no filter in intent, ignore.");
@@ -239,11 +266,11 @@ public class LogcatActivity extends LogActivity {
         }
         
         FilterSpec spec = (FilterSpec) p;
-        final int COUNT = mSpecs.length + 1;
+        final int COUNT = mFilterSpecs.length + 1;
         FilterSpec[] specs = new FilterSpec[COUNT];
         specs[0] = spec;
-        System.arraycopy(mSpecs, 0, specs, 1, mSpecs.length);
-        mSpecs = specs;
+        System.arraycopy(mFilterSpecs, 0, specs, 1, mFilterSpecs.length);
+        mFilterSpecs = specs;
     }
     
     @Override
@@ -314,7 +341,8 @@ public class LogcatActivity extends LogActivity {
 		} else {
 			message = "save log error at " + logFile.getPath();
 		}
-		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+		ActivityUtil.toast(this, message, Toast.LENGTH_LONG);
+//		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
     
     private String collectLog() {
@@ -510,6 +538,7 @@ public class LogcatActivity extends LogActivity {
         }
     }
 
+    // cycle buffer
     class LimitArray {
         private String[] mArray;
         private int mLimit;
@@ -589,7 +618,7 @@ public class LogcatActivity extends LogActivity {
             return count;
         }
     }
-
+    
     static class LogcatProcess {
         private OnLogListener mListener;
         private boolean mPush;
@@ -601,10 +630,7 @@ public class LogcatActivity extends LogActivity {
 
             mWorkerThread = new Thread("logcat thread") {
                 public void run() {
-                    final String[] command = {
-                            // DATE TIME PID TID LEVEL TAG MESSAGE
-                            "/system/bin/logcat", "-v", "threadtime"
-                    };
+                    final String[] command = CMD;
                     Process mProcess = null;
                     try {
                         mProcess = new ProcessBuilder(command).start();
@@ -657,14 +683,14 @@ public class LogcatActivity extends LogActivity {
         }
 
         class CacheLog {
-            private int mCap;
+            private int mcapacity;
             private int mCursor;
             private String[] mLogs;
 
-            CacheLog(int capcity) {
-                mCap = capcity;
+            CacheLog(int capacity) {
+                mcapacity = capacity;
                 mCursor = 0;
-                mLogs = new String[capcity];
+                mLogs = new String[capacity];
             }
 
             void addLog(String log) {
@@ -672,11 +698,11 @@ public class LogcatActivity extends LogActivity {
                     doLog(log);
                 }
                 mLogs[mCursor] = log;
-                mCursor = (mCursor + 1) % mCap;
+                mCursor = (mCursor + 1) % mcapacity;
             }
 
             void pushLog() {
-                for (int i = mCursor; i < mCap; i++) {
+                for (int i = mCursor; i < mcapacity; i++) {
                     if (mLogs[i] != null) {
                         doLog(mLogs[i]);
                     }
@@ -694,10 +720,6 @@ public class LogcatActivity extends LogActivity {
             void onLog(String log);
         }
     }
-    
-    //                    DATE      TIME       PID      TID      LEVEL     TAG      MESSAGE
-    final String REG = "(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(.*$)";
-    final Pattern PATTERN = Pattern.compile(REG);
 
     class Formator {
         Matcher mMatcher;
@@ -745,7 +767,6 @@ public class LogcatActivity extends LogActivity {
                     mTag = mMatcher.group(6);
                     mMsg = mMatcher.group(7);
 
-
                     if (mSpec.mPid > 0) {
                         filter &= (mPid.contains(mSpec.mPid + ""));
                     }
@@ -770,17 +791,17 @@ public class LogcatActivity extends LogActivity {
 
     class MergeFilter extends Filter {
         Filter mBaseFilter;
-        private Filter mMergerFilter;
+        private Filter mMergeFilter;
 
         MergeFilter(Filter baseFilter, Filter mergerFilter) {
             super();
             mBaseFilter = baseFilter;
-            mMergerFilter = mergerFilter;
+            mMergeFilter = mergerFilter;
         }
 
         @Override
         public boolean isLoggable(String log) {
-            return mBaseFilter.isLoggable(log) && mMergerFilter.isLoggable(log);
+            return mBaseFilter.isLoggable(log) && mMergeFilter.isLoggable(log);
         }
     }
     
@@ -857,7 +878,7 @@ public class LogcatActivity extends LogActivity {
         public String mTag;
         public String mMsg;
         public int mPid = -1;
-        public String mPck;
+        public String mpackage;
         public String mLevelReg;
 
         public static final Parcelable.Creator<FilterSpec> CREATOR = new Parcelable.Creator<FilterSpec>() {
@@ -882,7 +903,7 @@ public class LogcatActivity extends LogActivity {
             mTag = in.readString();
             mMsg = in.readString();
             mPid = in.readInt();
-            mPck = in.readString();
+            mpackage = in.readString();
             mLevelReg = in.readString();
         }
 
@@ -900,7 +921,7 @@ public class LogcatActivity extends LogActivity {
             dest.writeString(mTag);
             dest.writeString(mMsg);
             dest.writeInt(mPid);
-            dest.writeString(mPck);
+            dest.writeString(mpackage);
             dest.writeString(mLevelReg);
         }
 

@@ -14,7 +14,7 @@ import android.view.MotionEvent;
  * add log message to {@link Log}
  * @author bangbang.song@gmail.com
  *
- * @see #needLogLifecycle() ant others.
+ * @see #needLogLifecycle() needLogLifecycle and others.
  * @see #viewServerEnabled()
  */
 public class LogActivity extends Activity {
