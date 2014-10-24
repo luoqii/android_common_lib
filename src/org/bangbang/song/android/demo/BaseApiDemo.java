@@ -24,7 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.ListActivity;
+import org.bangbang.song.android.commonlib.activity.LogListActivity;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -47,7 +48,7 @@ import android.widget.SimpleAdapter;
  * @author bangbang.song@gmail.com
  *
  */
-public abstract class BaseApiDemo extends ListActivity {
+public abstract class BaseApiDemo extends LogListActivity {
 	
 	private static final String EXTRA_PATH = "com.example.android.apis.Path";
 
