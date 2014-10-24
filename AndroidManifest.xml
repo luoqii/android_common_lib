@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+versionName: X.Y.Z[prefix]
+versionCode: X * 1000000 + Y * 10000 + Z * 100 + BuildNumber
+ -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.bangbang.song.android.commonlib"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="1000101"
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="4"
