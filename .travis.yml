@@ -1,79 +1,32 @@
-language: java
-env:
-    global:
-    - BUILD_ANDROID_TARGET=android-19
-# build with latest sdk, but run on different run-time sdk.
-    matrix:
-    - ANDROID_IMGS=sysimg-8         RUNTIME_ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
-    - ANDROID_IMGS=sysimg-19        RUNTIME_ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+#http://docs.travis-ci.com/user/languages/android/
 
-before_install:
-    - export ANDROID_TARGET=$BUILD_ANDROID_TARGET 
-    - env
-    - git clone https://github.com/luoqii/apk_manifest_parser.git
+language: android
+android:
+  components:
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    # - platform-tools
+    # - tools
 
-    - export INSTALL_PGK="libgd2-xpm ia32-libs ia32-libs-multiarch expect tree"
-    - sudo apt-get update -qq
-    - if [ `uname -m` = x86_64 ] ; then sudo apt-get install -qq --force-yes $INSTALL_PGK ; fi 
+    # The BuildTools version used by your project
+    #- build-tools-19.1.0
+    - build-tools-21.1.1
 
-    - export ANDROID_SDK=android-sdk_r22.6-linux.tgz
-    - wget http://dl.google.com/android/$ANDROID_SDK
-    - tar -zxf $ANDROID_SDK 
-    - export ANDROID_HOME=`pwd`/android-sdk-linux
-    - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+    # The SDK version used to compile your project
+    #- android-19
+    - android-21
 
-    - wget http://dl.google.com/android/adt/adt-bundle-linux-x86_64-20131030.zip
-    - unzip adt-bundle-linux-x86_64-20131030.zip -d adt > /dev/null
-    - export ANDROID_HOME=`pwd`/adt/adt-bundle-linux-x86_64-20131030/sdk
-    - export PATH=${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:$PATH
-    # debug
-    - which android
-    - android list target
-    - android list sdk --extended 
-    - android list sdk --extended --all
-
-#turn if off if you do NOT want expect's debug info 
-    - DEBUG_EXPECT=-d
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter build-tools-19.0.3 --no-ui --force" android.update.sdk.expect
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter platform-tools --no-ui --force" android.update.sdk.expect
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter $RUNTIME_ANDROID_TARGET --no-ui --force" android.update.sdk.expect
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter extra-android-support --no-ui --force" android.update.sdk.expect
-# --all for update old packages.
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v update sdk --filter $ANDROID_IMGS --no-ui --force --all" android.update.sdk.expect
-    - android list
-
-    - export EMULATOR_NAME=test
-#    - tree $ANDROID_HOME/system-images
-    - adb kill-server
-    - adb start-server
-    - expect $DEBUG_EXPECT -c "spawn android --clear-cache -v create avd -n $EMULATOR_NAME -t $RUNTIME_ANDROID_TARGET --abi $ANDROID_ABI --force" android.create.avd.expect
-
-    # debug
-    - android list avd
-    - emulator -avd $EMULATOR_NAME -no-skin -no-audio -no-window &
-
-# do this as later as possiable
-#    - adb wait-for-device 
-    - android update project -p . -t $BUILD_ANDROID_TARGET
+jdk:
+  - oraclejdk8
+  - oraclejdk7
+  - openjdk7
+  - openjdk6
 
 install:
+#ant deps
+
+before_script:
 
 script:
-    - source  ./buildscript/lib/common.sh
-    - set_as_lib_project . false
-    - ant debug  
+  - ./gradlew assembleDebug
 
-#    - adb wait-for-device 
-    - wait_for_emulator
-
-    - ant installd
-
-    - cd test/unit
-    - chmod a+x run_test.ant
-    - adb devices
-    - ./run_test.ant
-
-    - cd ../..
-    - cd test/uiautomator
-    - chmod a+x run_test.sh
-    - ./run_test.sh
