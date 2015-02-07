@@ -1,12 +1,12 @@
 package org.bangbang.song.android;
 
-import org.bangbang.song.android.commonlib.BuildConfig;
 import org.bangbang.song.android.commonlib.ContextUtil;
 import org.bangbang.song.android.commonlib.CrazyClicker;
 import org.bangbang.song.android.commonlib.CrazyClicker.Callback;
 import org.bangbang.song.android.commonlib.R;
 import org.bangbang.song.android.commonlib.activity.LogActivity;
 import org.bangbang.song.android.commonlib.activity.LogcatActivity;
+import org.bangbang.song.android.commonlib.demo.BuildConfig;
 
 import android.content.Intent;
 import android.os.Bundle;

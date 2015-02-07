@@ -1,7 +1,6 @@
 package org.bangbang.song.android;
-import org.bangbang.song.android.demo.BaseApiDemo;
 
-import android.app.Activity;
+import org.bangbang.song.android.demo.BaseApiDemo;
 
 
 public class MainActivity extends BaseApiDemo {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+versionName: X.Y.Z[suffix]
+versionCode: X * 1000000 + Y * 10000 + Z * 100 + BuildNumber
+N.B. BuildNumber < 100
+ -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.bangbang.song.android.commonlib"
+    android:versionCode="1000101"
+    android:versionName="1.0.1" >
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="17" />
+    <!-- disable keyguard in auto test. -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:name="org.bangbang.song.android.Application"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="org.bangbang.song.android.commonlib.activity.LogcatActivity"
+            android:label="androidcommonlib/LogcatActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

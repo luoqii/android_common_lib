@@ -5,7 +5,7 @@ versionCode: X * 1000000 + Y * 10000 + Z * 100 + BuildNumber
 N.B. BuildNumber < 100
  -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.bangbang.song.android.commonlib"
+    package="org.bangbang.song.android.commonlib.demo"
     android:versionCode="1000101"
     android:versionName="1.0.1" >
 

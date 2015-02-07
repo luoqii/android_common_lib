@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidCommonLib</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">
+        Hello world!\n
+welcome to android common lib.</string>
+    <string name="lib_share">share</string>
+    <string name="lib_save">save</string>
+</resources>
