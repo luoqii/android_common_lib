@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.bangbang.song.android.demo;
+package org.bbs.android.commonlib.activity;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -24,8 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bbs.android.commonlib.activity.LogListActivity;
-
+import android.app.ListActivity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -48,7 +47,10 @@ import android.widget.SimpleAdapter;
  * @author bangbang.song@gmail.com
  *
  */
-public abstract class BaseApiDemo extends LogListActivity {
+public abstract class BaseApiDemo extends 
+ListActivity 
+//LogListActivity 
+{
 	
 	private static final String EXTRA_PATH = "com.example.android.apis.Path";
 
