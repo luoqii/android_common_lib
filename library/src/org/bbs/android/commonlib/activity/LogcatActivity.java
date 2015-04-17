@@ -1,5 +1,5 @@
 
-package org.bangbang.song.android.commonlib.activity;
+package org.bbs.android.commonlib.activity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,9 +11,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.bangbang.song.android.commonlib.ActivityUtil;
 import org.bangbang.song.android.commonlib.R;
-import org.bangbang.song.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
+import org.bbs.android.commonlib.ActivityUtil;
+import org.bbs.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
 
 import android.Manifest.permission;
 import android.app.Activity;

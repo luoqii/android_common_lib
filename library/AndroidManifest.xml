@@ -24,7 +24,7 @@ N.B. BuildNumber < 100
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.bangbang.song.android.commonlib.activity.LogcatActivity"
+            android:name="org.bbs.android.commonlib.activity.LogcatActivity"
             android:label="androidcommonlib/LogcatActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

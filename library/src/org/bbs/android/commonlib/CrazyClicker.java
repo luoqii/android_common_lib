@@ -1,5 +1,7 @@
 
-package org.bangbang.song.android.commonlib;
+package org.bbs.android.commonlib;
+
+import org.bangbang.song.android.commonlib.BuildConfig;
 
 import android.util.Log;
 

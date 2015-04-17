@@ -1,4 +1,4 @@
-package org.bangbang.song.android.commonlib;
+package org.bbs.android.commonlib;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

@@ -1,7 +1,9 @@
 package org.bangbang.song.android;
 
-import org.bangbang.song.android.commonlib.ThreadUtil;
-import org.bangbang.song.android.commonlib.activity.LogApplication;
+import org.bbs.android.commonlib.ExceptionCatcher;
+import org.bbs.android.commonlib.Log;
+import org.bbs.android.commonlib.Logger;
+import org.bbs.android.commonlib.activity.LogApplication;
 
 
 public class Application extends LogApplication {
@@ -12,15 +14,11 @@ public class Application extends LogApplication {
         super.onCreate();
         
 //        ThreadUtil.sleepSafely(8 * 1000);
-        ThreadUtil.catchCrashAndShow(this);
+        Log.d(TAG, "onCreate");
+        Logger.d(TAG, "onCreate");
         
-//        npe();
-    }
-
-    private void npe() {
-        String nullString = null;
-        if (nullString.length() == 0) {
-            
-        }
+        ExceptionCatcher.attachExceptionHandler(this);
+//        ExceptionCatcher.npe();
+        
     }
 }

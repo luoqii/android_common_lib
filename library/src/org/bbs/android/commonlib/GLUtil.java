@@ -1,4 +1,4 @@
-package org.bangbang.song.android.commonlib;
+package org.bbs.android.commonlib;
 
 import java.util.HashMap;
 import java.util.Map;

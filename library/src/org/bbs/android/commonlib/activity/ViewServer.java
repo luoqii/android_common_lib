@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.bangbang.song.android.commonlib.activity;
+package org.bbs.android.commonlib.activity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

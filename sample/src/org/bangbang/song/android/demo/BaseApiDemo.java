@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bangbang.song.android.commonlib.activity.LogListActivity;
+import org.bbs.android.commonlib.activity.LogListActivity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;

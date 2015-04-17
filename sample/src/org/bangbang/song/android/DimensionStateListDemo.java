@@ -2,11 +2,11 @@ package org.bangbang.song.android;
 
 import java.io.IOException;
 
-import org.bangbang.song.android.commonlib.ContextUtil;
-import org.bangbang.song.android.commonlib.DimensionStateList;
 import org.bangbang.song.android.commonlib.R;
-import org.bangbang.song.android.commonlib.activity.LogActivity;
 import org.bangbang.song.android.commonlib.demo.BuildConfig;
+import org.bbs.android.commonlib.ContextUtil;
+import org.bbs.android.commonlib.DimensionStateList;
+import org.bbs.android.commonlib.activity.LogActivity;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.Context;

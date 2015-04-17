@@ -1,5 +1,5 @@
 
-package org.bangbang.song.android.commonlib;
+package org.bbs.android.commonlib;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
