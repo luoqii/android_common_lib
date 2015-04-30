@@ -1,6 +1,7 @@
 package org.bbs.android.commonlib;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
@@ -15,6 +16,22 @@ public class ExceptionCatcher {
 	private static final String TAG = ExceptionCatcher.class.getSimpleName();
 	
 	public static void attachExceptionHandler(final Application app) {
+		File crashFile = null;
+		String name = "00_" + app.getPackageName() + "_crash.log.txt";
+		crashFile = app.getFileStreamPath(name);
+		crashFile.delete();
+		try {
+			app.openFileOutput(name, Context.MODE_WORLD_READABLE);
+			crashFile = app.getFileStreamPath(name);
+			crashFile.createNewFile();
+
+			attachExceptionHandler(app, crashFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void attachExceptionHandler(final Application app, final File crashFile) {
 		final UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread
 				.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
@@ -23,15 +40,7 @@ public class ExceptionCatcher {
 			@Override
 			public void uncaughtException(Thread thread, Throwable ex) {
 				PrintStream writer;
-				File crashFile = null;
-				String name = "00_" + app.getPackageName() + "_crash.log.txt";
 				try {
-					crashFile = app.getFileStreamPath(name);
-					crashFile.delete();
-					app.openFileOutput(name, Context.MODE_WORLD_READABLE);
-					crashFile = app.getFileStreamPath(name);
-					crashFile.createNewFile();
-
 					writer = new PrintStream(crashFile);
 					writer.append("crash at: " + new Date().toString());
 					writer.append("\n");
