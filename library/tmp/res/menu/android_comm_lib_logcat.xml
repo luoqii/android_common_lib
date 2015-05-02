@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/android_comm_lib_share" android:title="@string/android_comm_lib_share"
-        android:icon="@android:drawable/ic_menu_share"></item>   
-    <item android:id="@+id/android_comm_lib_save" android:title="@string/android_comm_lib_save"
-        android:icon="@android:drawable/ic_menu_save"></item>    
-
-</menu>
