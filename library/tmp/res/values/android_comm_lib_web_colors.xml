@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	see <a href="http://en.wikipedia.org/wiki/Web_colors"></a>
+ -->
+<resources>
+    <color name="android_comm_lib_white">#FFFFFF</color>
+    <color name="android_comm_lib_yellow">#FFFF00</color>
+    <color name="android_comm_lib_green">#008000</color>
+    <color name="android_comm_lib_red">#FF0000</color>
+    <color name="android_comm_lib_black">#000000</color>
+    
+    <color name="android_comm_lib_silver">#C0C0C0</color>
+    <color name="android_comm_lib_maroon">#800000</color>
+    <color name="android_comm_lib_olive">#808000</color>
+    <color name="android_comm_lib_gray">#808080</color>
+    <color name="android_comm_lib_lime">#00FF00</color>
+    <color name="android_comm_lib_qua">#00FFFF</color>
+    <color name="android_comm_lib_teal">#008080</color>
+    <color name="android_comm_lib_anvy">#000080</color>
+    <color name="android_comm_lib_fuchsia">#FF00FF</color>
+    <color name="android_comm_lib_purple">#800080</color>
+    
+    
+</resources>

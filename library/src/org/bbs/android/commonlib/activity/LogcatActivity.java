@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.bangbang.song.android.commonlib.R;
+//import org.bangbang.song.android.commonlib.R;
 import org.bbs.android.commonlib.ActivityUtil;
 import org.bbs.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
 
@@ -67,8 +67,8 @@ import android.widget.Toast;
  * @see {@link permission#READ_LOGS}
  */
 public class LogcatActivity extends 
-                                   LogActivity 
-//                                   Activity
+//                                   LogActivity 
+                                   Activity
 {
     private static final String TAG = LogcatActivity.class.getSimpleName();
 
@@ -120,6 +120,11 @@ public class LogcatActivity extends
     private static final String REG = "(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(\\S+)\\s+(.*$)";
     private static final Pattern PATTERN = Pattern.compile(REG);
 
+    public static void start(Context context){
+    	Intent logcat = new Intent(context, LogcatActivity.class);
+    	context.startActivity(logcat);
+    }
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,9 +163,9 @@ public class LogcatActivity extends
         
         // auto hide soft IME
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);        
-        setContentView(R.layout.lib_logcat);
+        setContentView(getResources().getIdentifier("android_comm_lib_logcat", "layout", getPackageName()));
         
-        mFilter = ((Spinner) findViewById(R.id.filter));
+        mFilter = ((Spinner) findViewById(getResources().getIdentifier("filter", "id", getPackageName())));
         mSpecAdapter = new ArrayAdapter<FilterSpec>(this, android.R.layout.simple_spinner_item,
                 mFilterSpecs);
         mSpecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -178,7 +183,7 @@ public class LogcatActivity extends
 
             }
         });
-        mRealTimeFilter = ((EditText) findViewById(R.id.real_time_filter));
+        mRealTimeFilter = ((EditText) findViewById(getResources().getIdentifier("real_time_filter", "id", getPackageName())));
         mRealTimeFilter.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -195,7 +200,7 @@ public class LogcatActivity extends
                 updateFilter();
             }
         });         
-        mRealTimeFilterLevel = ((Spinner) findViewById(R.id.real_time_level));
+        mRealTimeFilterLevel = ((Spinner) findViewById(getResources().getIdentifier("real_time_level", "id", getPackageName())));
         LevelSpec[] levelSpecs = new LevelSpec[]{new LevelSpec.ALL(), new LevelSpec.E(),
                 new LevelSpec.D(), new LevelSpec.W(), new LevelSpec.I(), new LevelSpec.V()};
         ArrayAdapter<LevelSpec> adapter = new ArrayAdapter<LogcatActivity.LevelSpec>(this, android.R.layout.simple_spinner_item, levelSpecs);
@@ -215,8 +220,8 @@ public class LogcatActivity extends
             }
         });
         
-        mLogs = ((ListView) findViewById(R.id.logs));
-        mAdapter = new FilterLogAdapter(this, R.layout.lib_log_info_item, mLogLimit);
+        mLogs = ((ListView) findViewById(getResources().getIdentifier("logs", "id", getPackageName())));
+        mAdapter = new FilterLogAdapter(this, getResources().getIdentifier("android_comm_lib_log_info_item", "layout", getPackageName()), mLogLimit);
         mAdapter.setFilter(new Filter(new FilterSpec.ALL()));
         mLogs.setAdapter(mAdapter);
         mLogs.setOnScrollListener(new OnScrollListener() {
@@ -284,7 +289,7 @@ public class LogcatActivity extends
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        new MenuInflater(this).inflate(R.menu.lib_logcat, menu);
+        new MenuInflater(this).inflate(getResources().getIdentifier("android_comm_lib_logcat", "menu", getPackageName()), menu);
         
         return true;
     }
@@ -292,7 +297,7 @@ public class LogcatActivity extends
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            menu.findItem(R.id.save).setEnabled(false);
+            menu.findItem(getResources().getIdentifier("android_comm_lib_save", "id", getPackageName())).setEnabled(false);
         }
         
         return super.onPrepareOptionsMenu(menu);
@@ -301,10 +306,10 @@ public class LogcatActivity extends
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.share) {
+        if (id == getResources().getIdentifier("android_comm_lib_share", "id", getPackageName())) {
             performShare();            
             return true;
-        } else if (id == R.id.save) {
+        } else if (id == getResources().getIdentifier("android_comm_lib_save", "id", getPackageName())) {
             performSaveLog();
             return true;
         }
@@ -342,7 +347,6 @@ public class LogcatActivity extends
 			message = "save log error at " + logFile.getPath();
 		}
 		ActivityUtil.toast(this, message, Toast.LENGTH_LONG);
-//		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
     
     private String collectLog() {
@@ -475,10 +479,10 @@ public class LogcatActivity extends
         private int mRes;
         private Context mContext;
         
-        private int mColorDefault = getResources().getColor(R.color.white);
-        private int mColorWarring = getResources().getColor(R.color.yellow);
-        private int mColorError = getResources().getColor(R.color.red);
-        private int mColorInfo = getResources().getColor(R.color.green);
+        private int mColorDefault = getResources().getColor(getResources().getIdentifier("android_comm_lib_white", "color", getPackageName()));
+        private int mColorWarring = getResources().getColor(getResources().getIdentifier("android_comm_lib_yellow", "color", getPackageName()));
+        private int mColorError = getResources().getColor(getResources().getIdentifier("android_comm_lib_red", "color", getPackageName()));
+        private int mColorInfo = getResources().getColor(getResources().getIdentifier("android_comm_lib_green", "color", getPackageName()));
 
         public LimitedLogAdapter(Context context, int textViewResourceId, int limited) {
             super();
@@ -517,8 +521,9 @@ public class LogcatActivity extends
             } else {
                 v = LayoutInflater.from(mContext).inflate(mRes, null);
             }
-            
-            TextView text = ((TextView) v.findViewById(R.id.log_item));
+
+//            TextView text = ((TextView) v.findViewById(R.id.log_item));
+            TextView text = ((TextView) v.findViewById(getResources().getIdentifier("log_item", "id", getPackageName())));
             String log = getItem(position);
             
             // TODO re-factor with Formator

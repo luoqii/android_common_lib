@@ -20,7 +20,7 @@ N.B. BuildNumber < 100
     <application
         android:allowBackup="true"
         android:name="org.bangbang.song.android.Application"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/android_comm_lib_ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -41,15 +41,7 @@ N.B. BuildNumber < 100
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="org.bangbang.song.android.DimensionStateListDemo"
-            android:label="androidcommonlib/DimensionStateListDemo" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-            </intent-filter>
-        </activity>
+        
         <activity
             android:name="org.bbs.android.commonlib.activity.LogcatActivity"
             android:label="androidcommonlib/LogcatActivity" >

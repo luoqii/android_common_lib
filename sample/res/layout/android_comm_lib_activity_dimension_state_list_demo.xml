@@ -21,6 +21,6 @@
         android:layout_below="@+id/button1"
         class="org.bangbang.song.android.DimensionStateListDemo$MyButton"
         android:text="Button2"
-        android:textColor="@color/button_color" />
+        android:textColor="@color/android_comm_lib_button_color" />
 
 </RelativeLayout>

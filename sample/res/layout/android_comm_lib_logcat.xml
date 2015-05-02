@@ -11,7 +11,7 @@
     <include
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        layout="@layout/lib_logcat_controlbar" />
+        layout="@layout/android_comm_lib_logcat_controlbar" />
 
     <HorizontalScrollView
         android:layout_width="fill_parent"

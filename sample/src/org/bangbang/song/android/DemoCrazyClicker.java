@@ -24,20 +24,19 @@ public class DemoCrazyClicker extends LogActivity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.android_comm_lib_activity_main);
         mCrazyClicker = new CrazyClicker(new Callback() {
             
             @Override
             public void onFireInTheHole() {
-                Intent intent = new Intent(DemoCrazyClicker.this, LogcatActivity.class);
-                startActivity(intent);
+                LogcatActivity.start(DemoCrazyClicker.this);
             }
         });
         
         if (BuildConfig.DEBUG) {
         	ContextUtil.disableKeyguard(this);
         }
-    }
+    }    
     
     @Override
     protected void onResume() {
