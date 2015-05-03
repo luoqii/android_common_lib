@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class CrazyClicker {
     private static final String TAG = CrazyClicker.class.getSimpleName();
-    private static final boolean DEBUG = BuildConfig.DEBUG && true;
+    private static final boolean DEBUG = BuildConfig.DEBUG && false;
 
     public static final int DEFAUTL_THRESHOLD = 300;
     public static final int DEFAUTL_HIT_LIMIT = 7;
