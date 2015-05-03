@@ -5,6 +5,7 @@
     android:orientation="vertical" >
 
     <include
+        android:id="@+id/android_comm_lib_logcat_contralbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         layout="@layout/android_comm_lib_logcat_controlbar" />

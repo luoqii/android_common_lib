@@ -111,6 +111,8 @@ public class LogcatActivity extends
     private String mLogSaveDir;
 
 	private int mLogLimit;
+
+	private View mFilterBar;
     
     private static final String[] CMD = {
             // DATE TIME PID TID LEVEL TAG MESSAGE
@@ -165,7 +167,9 @@ public class LogcatActivity extends
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);        
         setContentView(getResources().getIdentifier("android_comm_lib_logcat", "layout", getPackageName()));
         
-        mFilter = ((Spinner) findViewById(getResources().getIdentifier("filter", "id", getPackageName())));
+    	mFilterBar = findViewById(getResources().getIdentifier("android_comm_lib_logcat_contralbar", "id", getPackageName()));
+    	mFilterBar.setVisibility(View.GONE);
+    	mFilter = ((Spinner) findViewById(getResources().getIdentifier("filter", "id", getPackageName())));
         mSpecAdapter = new ArrayAdapter<FilterSpec>(this, android.R.layout.simple_spinner_item,
                 mFilterSpecs);
         mSpecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -312,12 +316,21 @@ public class LogcatActivity extends
         } else if (id == getResources().getIdentifier("android_comm_lib_save", "id", getPackageName())) {
             performSaveLog();
             return true;
+        } else if (id == getResources().getIdentifier("android_comm_lib_filter", "id", getPackageName())) {
+            item.setChecked(!item.isChecked());
+            boolean showFilter = item.isChecked();
+            showFilter(showFilter);
+            return true;
         }
         
         return super.onOptionsItemSelected(item);
     }
 
-    private void performSaveLog() {
+    private void showFilter(boolean showFilter) {
+    	mFilterBar.setVisibility(showFilter? View.VISIBLE : View.GONE);
+	}
+
+	private void performSaveLog() {
         String name = new Date(System.currentTimeMillis()).toGMTString() + ".log.txt";
         name = name.replace(" ", "_");
         name = name.replace(":", "_");
