@@ -37,6 +37,12 @@ public class DemoCrazyClicker extends LogActivity {
         }
     }    
     
+    public void onUserInteraction() {
+        if (BuildConfig.DEBUG) {
+            mCrazyClicker.onClick();
+        }
+    }
+    
     @Override
     protected void onResume() {
     	// TODO Auto-generated method stub
@@ -51,21 +57,5 @@ public class DemoCrazyClicker extends LogActivity {
     	super.onPause();
     	
     	mPaused = true;
-    }
-    
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (KeyEvent.KEYCODE_MENU == keyCode) {
-            mCrazyClicker.onClick();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-    
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (MotionEvent.ACTION_DOWN == event.getAction()) {
-            mCrazyClicker.onClick();
-        }
-        return super.onTouchEvent(event);
     }
 }

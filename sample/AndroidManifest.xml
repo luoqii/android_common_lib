@@ -11,7 +11,7 @@ N.B. BuildNumber < 100
 
     <uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="22" />
     <!-- disable keyguard in auto test. -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
@@ -41,6 +41,15 @@ N.B. BuildNumber < 100
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.bangbang.song.android.UtilActivity"
+            android:label="androidcommonlib/os/util" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>AndroidUtil
         
         <activity
             android:name="org.bbs.android.commonlib.activity.LogcatActivity"
