@@ -54,7 +54,8 @@ public class ExceptionCatcher {
 					Intent view = new Intent(Intent.ACTION_VIEW);
 					view.setDataAndType(Uri.fromFile(crashFile), "text/*");
 					view.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					view.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+					view.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//					view.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
 //					view.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 					app.startActivity(view);
 				} catch (Exception e) {
