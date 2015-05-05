@@ -19,7 +19,6 @@ N.B. BuildNumber < 100
 
     <application
         android:allowBackup="true"
-        android:name="org.bangbang.song.android.Application"
         android:icon="@drawable/android_comm_lib_ic_launcher"
         android:label="@string/android_comm_lib_app_name"
         android:theme="@style/android_comm_lib_AppTheme" >

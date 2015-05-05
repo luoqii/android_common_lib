@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-//import org.bangbang.song.android.commonlib.R;
 import org.bbs.android.commonlib.ActivityUtil;
 import org.bbs.android.commonlib.activity.LogcatActivity.LogcatProcess.OnLogListener;
 
@@ -49,6 +48,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+//import org.bangbang.song.android.commonlib.R;
 //import org.bangbang.song.android.commonlib.FileHierachySpec;
 
 /**
@@ -200,7 +200,18 @@ public class LogcatActivity extends
 
             @Override
             public void afterTextChanged(Editable s) {
-                mRealFilterText = s.toString();
+            	String text = s.toString();
+                mRealTimeFilterSpec.mTag = null;
+                mRealTimeFilterSpec.mMsg = null;
+                mRealFilterText = text;
+            	if (text.contains(":")){
+            		String[] split = text.split(":");
+            		if (split.length > 1 && "tag".equalsIgnoreCase(split[0].toLowerCase())) {
+            			mRealTimeFilterSpec.mTag = split[1];
+                        mRealTimeFilterSpec.mMsg = null;
+            			mRealFilterText = "";
+            		}
+            	}
                 updateFilter();
             }
         });         
@@ -788,13 +799,14 @@ public class LogcatActivity extends
                     if (mSpec.mPid > 0) {
                         filter &= (mPid.contains(mSpec.mPid + ""));
                     }
-                    if (mSpec.mLevelReg != null) {
+                    // null means match.
+                    if (null != (mSpec.mLevelReg)) {
                         filter &= mLevel.matches(mSpec.mLevelReg);
                     }
-                    if (mSpec.mTag != null) {
-                        filter &= mTag.contains(mSpec.mTag);
+                    if (null != (mSpec.mTag)) {
+                        filter &= (mTag.toLowerCase().contains(mSpec.mTag.toLowerCase()));
                     }
-                    if (mSpec.mMsg != null) {
+                    if (null != (mSpec.mMsg)) {
                         filter &= (mMsg.contains(mSpec.mMsg) || mMsg.matches("(?i).*" + mSpec.mMsg + ".*"));
                     }
                 }

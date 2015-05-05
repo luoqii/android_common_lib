@@ -9,4 +9,5 @@ welcome to android common lib.</string>
     <string name="android_comm_lib_share">share</string>
     <string name="android_comm_lib_save">save</string>
     <string name="android_comm_lib_filter">filter</string>
+    <string name="android_comm_lib_filter_hint">text or tag:TAG</string>
 </resources>

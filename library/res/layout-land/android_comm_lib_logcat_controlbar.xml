@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="filter text"
+            android:hint="@string/android_comm_lib_filter_hint"
             android:singleLine="true" >
 
             <requestFocus />
