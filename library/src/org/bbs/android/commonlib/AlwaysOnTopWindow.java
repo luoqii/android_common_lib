@@ -3,6 +3,7 @@ package org.bbs.android.commonlib;
 import android.content.Context;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 
 public class AlwaysOnTopWindow {
     private static final String TAG = AlwaysOnTopWindow.class.getSimpleName();
@@ -11,6 +12,8 @@ public class AlwaysOnTopWindow {
     private View mContentView;
     private int mContentRes;
     private WindowManager mWindowManager;
+
+	private LayoutParams mParam;
 
     public AlwaysOnTopWindow(Context context){
         mContext = context;
@@ -38,14 +41,18 @@ public class AlwaysOnTopWindow {
     public void dismiss(){
         mWindowManager.removeViewImmediate(mContentView);
     }
+    
+    public void updateLayoutParame(){
+    	mWindowManager.updateViewLayout(getContentView(), mParam);
+    }
 
     protected WindowManager.LayoutParams onCreateLayoutParams() {
         //http://stackoverflow.com/questions/4481226/creating-a-system-overlay-window-always-on-top
-        WindowManager.LayoutParams p = new WindowManager.LayoutParams();
-        p.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-        p.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        p.setTitle(TAG);
-        return p;
+        mParam = new WindowManager.LayoutParams();
+        mParam.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+        mParam.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        mParam.setTitle(TAG);
+        return mParam;
     }
 
     private View onCreateContentView() {
