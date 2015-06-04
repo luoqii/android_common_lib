@@ -105,7 +105,8 @@ public class LogcatActivity extends
     private FilterLogAdapter mAdapter;
 
     private static final String REAL_TIME_FILTER = "pref_real_time_filter";
-    private static LogcatProcess mLogcat;
+    // use static for speed up 2nd startup.
+    private static LogcatProcess sLogcat;
     private Handler mH;
 
     private String mLogSaveDir;
@@ -139,10 +140,10 @@ public class LogcatActivity extends
         };
         parseIntent(getIntent());
         
-        if (null == mLogcat) {
-            mLogcat = new LogcatProcess(mLogLimit);
+        if (null == sLogcat) {
+            sLogcat = new LogcatProcess(mLogLimit);
         }
-        mLogcat.setOnLogListerner(new OnLogListener() {
+        sLogcat.setOnLogListerner(new OnLogListener() {
 
             @Override
             public void onLog(String log) {
@@ -407,7 +408,7 @@ public class LogcatActivity extends
         
         saveFilter();
         
-        mLogcat.pushLog(true);     
+        sLogcat.pushLog(true);     
     }
 
     private void saveFilter() {
@@ -421,7 +422,13 @@ public class LogcatActivity extends
         
         restoreFilter();
         
-        mLogcat.pushLog(false);
+        sLogcat.pushLog(false);
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
+    	sLogcat.unsetOnLogListener();
     }
 
     private void restoreFilter() {
@@ -448,7 +455,7 @@ public class LogcatActivity extends
         public void setFilter(Filter filter) {
             mFilter = filter;
             
-            mFilterable = mFilter != null;            
+            mFilterable = mFilter != null;
             if (mFilterable) {
                 mFilterArray.clear();
                 
@@ -707,7 +714,7 @@ public class LogcatActivity extends
             mListener = listener;
         }
 
-        void unsetOnLogListener(OnLogListener listener) {
+        void unsetOnLogListener() {
             mListener = null;
         }
 
