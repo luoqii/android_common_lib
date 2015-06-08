@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 
 public class Version {
+	private static final int INVALID_CODE = -1;
 	private static final String PREF_NAME = Version.class.getName() + ".pref";
 	private static final String KEY_PREVIOUS_V_CODE = "previous_version_code";
 	private static final String KEY_PREVIOUS_V_NAME = "previous_version_name";
@@ -34,13 +35,13 @@ public class Version {
 			mCurrentVersionName = pInfo.versionName;
 			
 			SharedPreferences p = appContext.getSharedPreferences(PREF_NAME, 0);
-			mPreviousVersionCode = p.getInt(KEY_PREVIOUS_V_CODE, 0);
+			mPreviousVersionCode = p.getInt(KEY_PREVIOUS_V_CODE, INVALID_CODE);
 			mPreviousVersionName = p.getString(KEY_PREVIOUS_V_NAME, "");
 
 			Log.i(TAG, "mCurrentVersionCode  : " + mCurrentVersionCode);
-			Log.i(TAG, "mCurrentVersionName : " + mCurrentVersionName);
+			Log.i(TAG, "mCurrentVersionName  : " + mCurrentVersionName);
 			Log.i(TAG, "mPreviousVersionCode : " + mPreviousVersionCode);
-			Log.i(TAG, "mPreviousVersionName: " + mPreviousVersionName);
+			Log.i(TAG, "mPreviousVersionName : " + mPreviousVersionName);
 			
 			p.edit()
 				.putInt(KEY_PREVIOUS_V_CODE, mCurrentVersionCode)
@@ -68,7 +69,7 @@ public class Version {
 	}
 	
 	public boolean firstUsage(){
-		return mPreviousVersionCode == 0;
+		return mPreviousVersionCode == INVALID_CODE;
 	}
 	
 	public boolean appUpdated(){
