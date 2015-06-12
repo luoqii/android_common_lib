@@ -25,10 +25,15 @@ public class Version {
 	private String mCurrentVersionName;
 	private int mPreviousVersionCode;
 	private String mPreviousVersionName;
+	private boolean mInited;
 	
 	private Version(){};
 	
 	public void init(Application appContext){
+		if (mInited) {
+			Log.i(TAG, "this has inited already, ignore.");
+			return;
+		}
 		try {
 			PackageInfo pInfo = appContext.getPackageManager().getPackageInfo(appContext.getPackageName(), 0);
 			mCurrentVersionCode = pInfo.versionCode;
@@ -50,6 +55,7 @@ public class Version {
 		} catch (NameNotFoundException e) {
 			throw new RuntimeException("can not get packageinfo. ");
 		}
+		mInited = true;
 	}
 		
 	public int getVersionCode(){
