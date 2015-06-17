@@ -2,30 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:id="@+id/logcat_container"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/android_comm_lib_logcat_contralbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/android_comm_lib_logcat_controlbar" />
-
-    <HorizontalScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#000000" >
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent" >
-
-            <ListView
-                android:id="@+id/logs"
-                android:layout_width="2000dp"
-                android:layout_height="wrap_content" >
-            </ListView>
-        </LinearLayout>
-    </HorizontalScrollView>
+   
 
 </LinearLayout>

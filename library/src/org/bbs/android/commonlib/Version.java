@@ -1,5 +1,10 @@
 package org.bbs.android.commonlib;
 
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -7,18 +12,28 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class Version {
 	private static final int INVALID_CODE = -1;
-	private static final String PREF_NAME = Version.class.getName() + ".pref";
+	private /*static*/ /*final*/ String PREF_NAME = Version.class.getSimpleName() + ".pref";
 	private static final String KEY_PREVIOUS_V_CODE = "previous_version_code";
 	private static final String KEY_PREVIOUS_V_NAME = "previous_version_name";
 	private static final String TAG = Version.class.getSimpleName();
-	private static Version sInstance;
+	private static Map<Reference<Application>, Version>  sInstances = new HashMap<Reference<Application>, Version>();
 	
-	public static Version getInstance(){
-		if (null == sInstance){
-			sInstance = new Version();
+	public static Version getInstance(Application appContext){
+		Version v = null;
+		for (Reference<Application> r : sInstances.keySet()) {
+			if (r != null && r.get() == appContext) {
+				v = sInstances.get(r);
+				if (null != v){
+					return v;
+				}
+			}
+		}
+		if (null == v){
+			v = new Version(appContext);
+			sInstances.put(new WeakReference<Application>(appContext), v);
 		}
 		
-		return sInstance;
+		return v;
 	}
 
 	private int mCurrentVersionCode;
@@ -27,9 +42,12 @@ public class Version {
 	private String mPreviousVersionName;
 	private boolean mInited;
 	
-	private Version(){};
+	private Version(Application appContext){
+		PREF_NAME = appContext.getPackageName() + "." + PREF_NAME;
+		init(appContext);
+	};
 	
-	public void init(Application appContext){
+	void init(Application appContext){
 		if (mInited) {
 			Log.i(TAG, "this has inited already, ignore.");
 			return;
