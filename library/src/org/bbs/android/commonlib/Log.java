@@ -13,20 +13,29 @@ import java.util.logging.SimpleFormatter;
 
 import android.os.Environment;
 
+
+/**
+ * @author bysong
+ * 
+ * @see #init(String, String)
+ *
+ */
 public class Log {
 	private static final String TAG = Log.class.getSimpleName();
 
     private static final String TAG_DELIMITER = ":";
     private static String mRootTag = "libproject";
+    
     private static boolean sLog2STDOUT = true;
-
-    private static Logger sLogger = null;
     private static boolean sLog2File = false;
+    
+    private static Logger sLogger = null;
     private static Handler sFileHandler;
+    private static Formatter sFormater;
+    
     private static final int COUNT = 5;
     private static final int LIMIT = 20 * 1024 * 1024; // 20M
 
-    private static Formatter sFormater;
 
     public static void setRootTag(String rootTag) {
         mRootTag = rootTag;
