@@ -9,10 +9,11 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.util.Log;
 
 public class Version {
 	private static final int INVALID_CODE = -1;
-	private /*static*/ /*final*/ String PREF_NAME = Version.class.getSimpleName() + ".pref";
+	private /*static*/ /*final*/ String PREF_NAME = Version.class.getSimpleName() + "";
 	private static final String KEY_PREVIOUS_V_CODE = "previous_version_code";
 	private static final String KEY_PREVIOUS_V_NAME = "previous_version_name";
 	private static final String TAG = Version.class.getSimpleName();
@@ -49,7 +50,7 @@ public class Version {
 	
 	void init(Application appContext){
 		if (mInited) {
-			Log.i(TAG, "this has inited already, ignore.");
+			Log.w(TAG, "this has inited already, ignore.");
 			return;
 		}
 		try {
