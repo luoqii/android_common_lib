@@ -1,0 +1,23 @@
+<resources>
+    <style name="L_WW">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>    
+    
+    <style name="L_WF">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="L_FW">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="L_FF">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="L_MM"  parent="@style/L_FF"/>
+    <style name="L_WM"  parent="@style/L_WF"/>
+    <style name="L_MW"  parent="@style/L_FW"/>
+
+</resources>
