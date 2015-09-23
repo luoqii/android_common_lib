@@ -29,6 +29,12 @@ N.B. BuildNumber < 100
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+        <activity
+            android:name="org.bbs.android.commonlib.activity.AllLauncherActivity"
+            android:label="act">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
     </application>
 
