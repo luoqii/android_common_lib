@@ -28,7 +28,8 @@ N.B. BuildNumber < 100
             android:label="Logcat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
+            </intent-filter>            
+        </activity>
         <activity
             android:name="org.bbs.android.commonlib.activity.AllLauncherActivity"
             android:label="act">
