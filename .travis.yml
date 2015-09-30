@@ -28,6 +28,7 @@ install:
 before_script:
 
 script:
-  - ./gradlew assembleDebug
+#  - ./gradlew assembleDebug
+  - ./gradlew iD
   - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
 
