@@ -1,5 +1,5 @@
 #http://docs.travis-ci.com/user/languages/android/
-
+sudo: false
 language: android
 android:
   components:
@@ -29,4 +29,5 @@ before_script:
 
 script:
   - ./gradlew assembleDebug
+  - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
 
