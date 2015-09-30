@@ -39,12 +39,15 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &
   - adb wait-for-device
 #  - cat `which android-wait-for-emulator`
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82 &
 
 
 script:
 #  - ./gradlew assembleDebug
   - ./gradlew iD
+  
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
   - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
 
