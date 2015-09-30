@@ -44,10 +44,10 @@ before_script:
 
 
 script:
-#  - ./gradlew assembleDebug
-  - ./gradlew iD
-  
+  - ./gradlew assembleDebug
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
+  - ./gradlew iD
+  
   - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
 
