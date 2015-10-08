@@ -1,5 +1,5 @@
 #http://docs.travis-ci.com/user/languages/android/
-
+sudo: false
 language: android
 android:
   components:
@@ -21,12 +21,34 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
+env:
+  matrix:
+    - ANDROID_TARGET=android-22  ANDROID_ABI=armeabi-v7a
+android:
+  components:
+  #  - build-tools-19.0.0
+    - build-tools-23
+    - android-22
+    - sys-img-armeabi-v7a-android-22
 
 install:
 #ant deps
 
 before_script:
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb wait-for-device
+#  - cat `which android-wait-for-emulator`
+#  - android-wait-for-emulator
+#  - adb shell input keyevent 82 &
+
 
 script:
+# aD first & install second.
   - ./gradlew assembleDebug
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+  - ./gradlew iD
+  
+  - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
 
