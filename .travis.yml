@@ -11,7 +11,7 @@ android:
     # The BuildTools version used by your project
     #- build-tools-19.1.0
     # android new tools is not always avaiable in build bot.
-    - build-tools-21.1.1
+    #- build-tools-21.1.1
     #- build-tools-23
     #- build-tools-23.0.1
 
@@ -30,9 +30,9 @@ env:
 android:
   components:
   #  - build-tools-19.0.0
-    - build-tools-23
-    - android-22
-    - sys-img-armeabi-v7a-android-22
+    - build-tools-21.1.1
+    - android-21
+    - sys-img-armeabi-v7a-android-21
 
 install:
 #ant deps
