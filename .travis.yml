@@ -11,7 +11,8 @@ android:
     # The BuildTools version used by your project
     #- build-tools-19.1.0
     # android new tools is not always avaiable in build bot.
-    - build-tools-23
+    - 21.1.1
+    #- build-tools-23
     #- build-tools-23.0.1
 
     # The SDK version used to compile your project
