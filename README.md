@@ -7,4 +7,5 @@ android_common_lib
 * add build script for travis.
 
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"
+[99998]:trigger for other
 
