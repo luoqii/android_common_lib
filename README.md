@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/luoqii/android_common_lib.png?branch=master)](https://travis-ci.org/luoqii/android_common_lib)
-[![Build Status](https://travis-ci.org/luoqii/android_common_lib.png?branch=master)](https://travis-ci.org/luoqii/android_common_lib)
+[![Build Status](https://circleci.com/gh/luoqii/android_common_lib.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/luoqii/android_common_lib)
 
 android_common_lib
 ==================
