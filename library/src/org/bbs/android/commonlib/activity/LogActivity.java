@@ -18,12 +18,14 @@ import android.view.MotionEvent;
  * @see #viewServerEnabled()
  */
 public class LogActivity extends Activity {
-	
+
+	private static final String TAG = LogActivity.class.getSimpleName();
+
 	protected boolean needLogLifecycle() {
 		return true;
 	}
 	protected boolean needLogSaveInstance() {
-		return false;
+		return true;
 	}
 	protected boolean needLogMemory() {
 		return false;
@@ -37,6 +39,11 @@ public class LogActivity extends Activity {
 	protected boolean needLogActivityResult() {
 		return false;
 	}
+
+	protected String getLogTag(){
+		return TAG;
+	}
+
 	/**
 	 * for some device, hierarchy view do not work, in this case,
 	 * you neeed this.
@@ -46,9 +53,10 @@ public class LogActivity extends Activity {
         return false;
     }
     protected void log(String message) {
-		Log.d(getClass().getSimpleName(), message);
+		Log.d(getLogTag(), getClass().getSimpleName() + " " + message);
 	}
 	
+
 	// life cycle.
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
