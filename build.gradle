@@ -6,6 +6,10 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.+'
+
+        //http://www.cnblogs.com/qianxudetianxia/p/4322331.html
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
     }
 }
 
