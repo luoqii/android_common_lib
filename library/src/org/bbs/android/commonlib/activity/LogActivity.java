@@ -86,6 +86,16 @@ public class LogActivity extends Activity {
 			log("onPostCreate(). savedInstanceState: " + savedInstanceState);
 		}
 	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+
+		if (needLogLifecycle()){
+			log("onNewIntent(). intent: " + intent);
+		}
+	}
+
 	@Override
 	protected void onRestart() {
 		super.onRestart();
