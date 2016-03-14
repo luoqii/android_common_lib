@@ -73,10 +73,13 @@ public class ExceptionCatcher {
 
 	/**
 	 * force a NullPointerException.
+	 * <p>
+	 * debug only
 	 */
 	public static void npe() {
 		String nullStr = null;
 		if (nullStr.length() > 0) {
+			; // do nothing
 		}
 	}
 }

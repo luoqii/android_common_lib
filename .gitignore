@@ -3,6 +3,6 @@ gen
 local.properties
 build
 .gradle
-.idea
+.idea/
 *temp*
 library/tmp
