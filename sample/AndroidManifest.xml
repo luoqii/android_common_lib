@@ -51,7 +51,22 @@ N.B. BuildNumber < 100
 
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
-        </activity>AndroidUtil
+        </activity>
+        <activity android:name="org.bangbang.song.android.LifeCycle_1_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity android:name="org.bangbang.song.android.LifeCycleActivity"
+            android:label="androidcommonlib/lifecycle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
         
         <activity
             tools:replace="label"
