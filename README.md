@@ -8,9 +8,9 @@ android_common_lib
 
 
 
-in Gradle:
+used in Gradle:
 ```groovy
-testCompile 'org.bbs.android.lib:library:0.0.2'
+compile 'org.bbs.android.lib:library:0.0.2'
 ```
 
 
