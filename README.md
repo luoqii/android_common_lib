@@ -10,6 +10,10 @@ android_common_lib
 
 used in Gradle:
 ```groovy
+ repositories {
+    jcenter()
+  }
+    
 compile 'org.bbs.android.lib:library:0.0.2'
 ```
 
