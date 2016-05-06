@@ -18,7 +18,7 @@ compile 'org.bbs.android.lib:library:0.0.3'
 ```
 
 
-[99999]:sync lib version with jcenter.gradle
+[99998]:htt://nonexist.com/ sync lib version with jcenter.gradle
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"
 
 
