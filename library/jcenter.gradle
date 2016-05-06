@@ -7,7 +7,8 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 }
 
-version = "0.0.1"
+// sync woth Reade.md
+version = "0.0.3"
 
 // uploade to jCenter.
 def siteUrl = 'https://github.com/luoqii/android_common_lib'

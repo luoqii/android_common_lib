@@ -14,11 +14,11 @@ used in Gradle:
     jcenter()
   }
     
-compile 'org.bbs.android.lib:library:0.0.2'
+compile 'org.bbs.android.lib:library:0.0.3'
 ```
 
 
-
+[99999]:sync lib version with jcenter.gradle
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"
 
 
