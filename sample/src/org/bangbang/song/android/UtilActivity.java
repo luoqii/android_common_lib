@@ -3,6 +3,7 @@ package org.bangbang.song.android;
 import org.bangbang.song.android.commonlib.demo.R;
 import org.bbs.android.commonlib.AndroidUtil;
 import org.bbs.android.commonlib.activity.LogActivity;
+import org.bbs.android.log.Logcat_FragmentActivity;
 
 import android.os.Bundle;
 import android.view.View;

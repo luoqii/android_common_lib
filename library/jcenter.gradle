@@ -13,7 +13,7 @@ version = "0.0.3"
 // uploade to jCenter.
 def siteUrl = 'https://github.com/luoqii/android_common_lib'
 def gitUrl = 'https://github.com/luoqii/android_common_lib.git'
-group = "org.bbs.android.lib"
+group = "org.bbs.android"
 
 install {
     repositories.mavenInstaller {
@@ -73,6 +73,7 @@ bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
+    publish = true
     pkg {
         repo = "maven"
         name = "andriodcommonlib"                                                 // #CONFIG# project name in jcenter

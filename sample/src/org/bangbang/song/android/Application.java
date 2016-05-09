@@ -1,9 +1,8 @@
 package org.bangbang.song.android;
 
 import org.bbs.android.commonlib.ExceptionCatcher;
-import org.bbs.android.commonlib.Log;
-import org.bbs.android.commonlib.Logger;
 import org.bbs.android.commonlib.activity.LogApplication;
+import org.bbs.android.log.Log;
 
 
 public class Application extends LogApplication {
@@ -15,7 +14,6 @@ public class Application extends LogApplication {
         
 //        ThreadUtil.sleepSafely(8 * 1000);
         Log.d(TAG, "onCreate");
-        Logger.d(TAG, "onCreate");
         
         ExceptionCatcher.attachExceptionHandler(this);
 //        ExceptionCatcher.npe();

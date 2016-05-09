@@ -3,7 +3,7 @@ package org.bangbang.song.android;
 import org.bangbang.song.android.commonlib.R;
 import org.bangbang.song.android.commonlib.demo.BuildConfig;
 import org.bbs.android.commonlib.activity.BaseApiDemo;
-import org.bbs.android.commonlib.activity.LogcatActivity;
+import org.bbs.android.log.Logcat_FragmentActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +29,7 @@ public class MainActivity extends BaseApiDemo {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.android_comm_lib_menu_logcat:
-                LogcatActivity.start(this);
+                Logcat_FragmentActivity.start(this);
                 break;
         }
 

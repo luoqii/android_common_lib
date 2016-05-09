@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Process;
 
+import org.bbs.android.log.Log;
+
 public class AndroidUtil {
 	private static final String TAG = AndroidUtil.class.getSimpleName();
 

@@ -14,9 +14,8 @@ used in Gradle:
     jcenter()
   }
     
-compile 'org.bbs.android.lib:library:0.0.3'
+compile 'org.bbs.android:commonlib:0.0.3'
 ```
-
 
 [99998]:htt://nonexist.com/ "sync lib version with jcenter.gradle"
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"

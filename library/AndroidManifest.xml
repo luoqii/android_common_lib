@@ -10,7 +10,7 @@ N.B. BuildNumber < 100
     android:versionName="1.0.1" >
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="7"
         android:targetSdkVersion="17" />
     <!-- disable keyguard in auto test. -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
@@ -23,13 +23,6 @@ N.B. BuildNumber < 100
         android:label="@string/android_comm_lib_app_name"
         android:theme="@style/android_comm_lib_AppTheme" >
         
-        <activity
-            android:name="org.bbs.android.commonlib.activity.LogcatActivity"
-            android:label="Logcat">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>            
-        </activity>
         <activity
             android:name="org.bbs.android.commonlib.activity.AllLauncherActivity"
             android:label="act">

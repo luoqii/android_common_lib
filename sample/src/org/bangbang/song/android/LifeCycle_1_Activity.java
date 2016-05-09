@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import org.bangbang.song.android.commonlib.demo.R;
 import org.bbs.android.commonlib.activity.LogActivity;
+import org.bbs.android.log.Logcat_FragmentActivity;
 
 public class LifeCycle_1_Activity extends LogActivity {
     private static final String TAG = LifeCycle_1_Activity.class.getSimpleName();

@@ -6,7 +6,7 @@ import org.bbs.android.commonlib.ContextUtil;
 import org.bbs.android.commonlib.CrazyClicker;
 import org.bbs.android.commonlib.CrazyClicker.Callback;
 import org.bbs.android.commonlib.activity.LogActivity;
-import org.bbs.android.commonlib.activity.LogcatActivity;
+import org.bbs.android.log.Logcat_FragmentActivity;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -28,7 +28,7 @@ public class DemoCrazyClicker extends LogActivity {
             
             @Override
             public void onFireInTheHole() {
-                LogcatActivity.start(DemoCrazyClicker.this);
+                Logcat_FragmentActivity.start(DemoCrazyClicker.this);
             }
         });
         
