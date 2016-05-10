@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/luoqii/android_common_lib.png?branch=master)](https://travis-ci.org/luoqii/android_common_lib)
 [![Build Status](https://circleci.com/gh/luoqii/android_common_lib.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/luoqii/android_common_lib)
 
+
+[![Download](https://api.bintray.com/packages/luoqii/maven/android-common-lib/images/download.svg) ](https://bintray.com/luoqii/maven/android-common-lib/_latestVersion)
+
 android_common_lib
 ==================
 * android project common library.
@@ -14,9 +17,8 @@ used in Gradle:
     jcenter()
   }
     
-compile 'org.bbs.android:commonlib:0.0.3'
+compile 'org.bbs.android:commonlib:0.1'
 ```
-
 [99998]:htt://nonexist.com/ "sync lib version with jcenter.gradle"
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"
 
