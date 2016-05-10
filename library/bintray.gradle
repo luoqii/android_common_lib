@@ -1,7 +1,7 @@
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-def GROUP = 'org.bbs.android'
+def GROUP = 'org.bbs.android.commonlib'
 // sync with Readme.md
 def VERSION = '0.1'
 
@@ -12,7 +12,7 @@ install {
     repositories.mavenInstaller {
         pom.project {
             name 'android-common-lib'
-            description 'common lib for andorid'
+            description 'common lib for android'
             url 'https://github.com/luoqii/android_common_lib'
             //inceptionYear '2015'
 
