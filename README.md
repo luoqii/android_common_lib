@@ -16,8 +16,10 @@ used in Gradle:
  repositories {
     jcenter()
   }
-    
-compile 'org.bbs.android:commonlib:0.1'
+
+
+ compile 'org.bbs.android:log:0.5'
+ compile 'org.bbs.android.commonlib:commonlib:0.1'
 ```
 [99998]:htt://nonexist.com/ "sync lib version with jcenter.gradle"
 [99999]:http://wowubuntu.com/markdown/#p "Markdown 语法说明"

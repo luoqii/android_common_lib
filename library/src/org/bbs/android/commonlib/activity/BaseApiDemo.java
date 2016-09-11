@@ -49,7 +49,7 @@ import android.widget.SimpleAdapter;
  */
 public abstract class BaseApiDemo extends 
 ListActivity 
-//LogListActivity 
+//Log_ListActivity
 {
 	
 	private static final String EXTRA_PATH = "com.example.android.apis.Path";

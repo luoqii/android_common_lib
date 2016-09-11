@@ -1,7 +1,7 @@
 package org.bangbang.song.android;
 
-import org.bangbang.song.android.commonlib.R;
 import org.bangbang.song.android.commonlib.demo.BuildConfig;
+import org.bangbang.song.android.commonlib.demo.R;
 import org.bbs.android.commonlib.activity.BaseApiDemo;
 import org.bbs.android.log.Logcat_FragmentActivity;
 

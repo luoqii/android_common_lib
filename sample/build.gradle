@@ -1,8 +1,12 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile project(':commonlib')
+
+    compile 'com.android.support:support-v4:21.0.0'
+    compile 'org.bbs.android:log:0.5'
+    compile 'org.bbs.android.commonlib:commonlib:0.1'
+//    compile project(':commonlib')
 }
 
 android {
