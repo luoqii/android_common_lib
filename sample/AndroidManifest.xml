@@ -67,6 +67,12 @@ N.B. BuildNumber < 100
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
+        <activity android:name="org.bbs.android.commonlib.activity.LogActivity"
+            android:label="androidcommonlib/logcat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
