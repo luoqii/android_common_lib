@@ -5,7 +5,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
 
     provided 'com.android.support:support-v4:21.0.0'
-
     provided 'org.bbs.android:log:0.5_beta'
 }
 
@@ -43,4 +42,6 @@ android {
     }
 }
 
-//apply from: 'bintray.gradle'
+
+
+apply from: 'bintray.gradle'
