@@ -2,11 +2,29 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 def GROUP = 'org.bbs.android.commonlib'
-// sync with Readme.md
-def VERSION = '0.2'
+def VERSION = getVersion()
 
 group = GROUP
 version = VERSION
+
+def getVersion(){
+    File readme = new File('README.md');
+    def line
+    readme.withReader { reader ->
+        while ((line = reader.readLine())!=null) {
+            if (line.matches(".*org.bbs.android.commonlib:commonlib.*")){
+                def v = line.replaceAll("(.*org.bbs.android.commonlib:commonlib):([^']*).*", {Object[] it -> it[2]});
+
+//                println "version:" + v
+                return v;
+            }
+        }
+    }
+}
+
+task testGetVersion << {
+    print "log version: " + getVersion()
+}
 
 install {
     repositories.mavenInstaller {
