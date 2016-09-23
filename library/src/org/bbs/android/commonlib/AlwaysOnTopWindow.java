@@ -41,9 +41,13 @@ public class AlwaysOnTopWindow {
     public void dismiss(){
         mWindowManager.removeViewImmediate(mContentView);
     }
-    
-    public void updateLayoutParam(){
-    	mWindowManager.updateViewLayout(getContentView(), mParam);
+
+    public LayoutParams getLayoutParam(){
+        return mParam;
+    }
+
+    public void updateLayoutParam(LayoutParams param){
+    	mWindowManager.updateViewLayout(getContentView(), param);
     }
 
     protected WindowManager.LayoutParams onCreateLayoutParams() {
