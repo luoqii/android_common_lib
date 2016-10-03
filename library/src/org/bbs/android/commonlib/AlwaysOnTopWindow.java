@@ -55,7 +55,7 @@ public class AlwaysOnTopWindow {
         mParam = new WindowManager.LayoutParams();
         mParam.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         mParam.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        mParam.setTitle(TAG);
+//        mParam.setTitle(TAG);
         return mParam;
     }
 
