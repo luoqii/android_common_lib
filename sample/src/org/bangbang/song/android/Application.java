@@ -17,6 +17,6 @@ public class Application extends LogApplication {
         
         ExceptionCatcher.attachExceptionHandler(this);
 //        ExceptionCatcher.npe();
-        
+
     }
 }

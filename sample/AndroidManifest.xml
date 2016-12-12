@@ -11,8 +11,9 @@ N.B. BuildNumber < 100
     android:versionName="1.0.1">
 
     <uses-sdk
+        tools:overrideLibrary="android.support.constraint"
         android:minSdkVersion="7"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="24" />
     <!-- disable keyguard in auto test. -->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.READ_LOGS"/>
