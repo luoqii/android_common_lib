@@ -6,3 +6,5 @@ build
 .idea/
 *temp*
 library/tmp
+*.iml
+.DS_Store
