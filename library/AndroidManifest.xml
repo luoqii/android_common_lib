@@ -13,16 +13,11 @@ N.B. BuildNumber < 100
         android:minSdkVersion="7"
         android:targetSdkVersion="17" />
     <!-- disable keyguard in auto test. -->
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
     <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-    <application
-        android:allowBackup="true"
-        android:icon="@drawable/android_comm_lib_ic_launcher"
-        android:label="@string/android_comm_lib_app_name"
-        android:theme="@style/android_comm_lib_AppTheme" >
-        
+    <application>
         <activity
             android:name="org.bbs.android.commonlib.activity.AllLauncherActivity"
             android:label="act">

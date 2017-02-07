@@ -55,7 +55,7 @@ public class ExceptionCatcher {
 				try {
 					writer = new PrintStream(crashFile);
 					writer.append("crash at: " + new Date().toString());
-					writer.append("\n");`
+					writer.append("\n");
 					writer.flush();
 
 					ex.printStackTrace(writer);
