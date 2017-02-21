@@ -27,6 +27,7 @@ N.B. BuildNumber < 100
         </activity>
 
         <activity android:name="org.bbs.android.commonlib.ExceptionCatcher$HTMLViewerActivity"
+            android:exported="false"
             android:label="ExceptionCatcher">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
