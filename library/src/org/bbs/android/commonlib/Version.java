@@ -46,7 +46,13 @@ public class Version {
 	private Version(Application appContext){
 		PREF_NAME = appContext.getPackageName() + "." + PREF_NAME;
 		init(appContext);
-	};
+	}
+
+	void assertHasInit() {
+		if (!mInited) {
+			throw new IllegalStateException("you must init this with init(Application) method.");
+		}
+	}
 	
 	void init(Application appContext){
 		if (mInited) {
@@ -78,26 +84,32 @@ public class Version {
 	}
 		
 	public int getVersionCode(){
+		assertHasInit();
 		return mCurrentVersionCode;
 	}
 	
 	public String getVersionName() {
+		assertHasInit();
 		return mCurrentVersionName;
 	}	
 	
 	public int getPreviousVersionCode(){
+		assertHasInit();
 		return mPreviousVersionCode;
 	}
 	
 	public String getPreviousVersionName() {
+		assertHasInit();
 		return mPreviousVersionName;
 	}
 	
 	public boolean firstUsage(){
+		assertHasInit();
 		return mPreviousVersionCode == INVALID_CODE;
 	}
 	
 	public boolean appUpdated(){
+		assertHasInit();
 		return mPreviousVersionCode != mCurrentVersionCode;
 	}
 }
