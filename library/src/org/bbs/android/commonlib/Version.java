@@ -17,31 +17,26 @@ public class Version {
 	private static final String KEY_PREVIOUS_V_CODE = "previous_version_code";
 	private static final String KEY_PREVIOUS_V_NAME = "previous_version_name";
 	private static final String TAG = Version.class.getSimpleName();
-	private static Map<Reference<Application>, Version>  sInstances = new HashMap<Reference<Application>, Version>();
-	
-	public static Version getInstance(Application appContext){
-		Version v = null;
-		for (Reference<Application> r : sInstances.keySet()) {
-			if (r != null && r.get() == appContext) {
-				v = sInstances.get(r);
-				if (null != v){
-					return v;
-				}
-			}
-		}
-		if (null == v){
-			v = new Version(appContext);
-			sInstances.put(new WeakReference<Application>(appContext), v);
-		}
-		
-		return v;
-	}
+
+	private static Version  INSTANCE = null;
 
 	private int mCurrentVersionCode;
 	private String mCurrentVersionName;
 	private int mPreviousVersionCode;
 	private String mPreviousVersionName;
 	private boolean mInited;
+	
+	public static Version getInstance(Application appContext){
+		if (null == INSTANCE) {
+			synchronized (Version.class) {
+				if (null == INSTANCE) {
+					INSTANCE = new Version(appContext);
+				}
+			}
+		}
+		
+		return INSTANCE;
+	}
 	
 	private Version(Application appContext){
 		PREF_NAME = appContext.getPackageName() + "." + PREF_NAME;
