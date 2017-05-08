@@ -30,6 +30,7 @@ allprojects {
 
 ext {
     compileSdkVersion = 23
+    //keep update with .travis.yml
     buildToolsVersion = '23.0.3'
 }
 
