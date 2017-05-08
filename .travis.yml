@@ -4,9 +4,9 @@ language: android
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
+#  - oraclejdk7
+#  - openjdk7
+#  - openjdk6
 env:
   matrix:
     - ANDROID_TARGET=android-21  ANDROID_ABI=armeabi-v7a
@@ -17,10 +17,10 @@ android:
     - build-tools-23.0.3
     - android-21
     - sys-img-armeabi-v7a-android-21
-  licenses:
+  licenses
     - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+    - 'android.+'
+    - 'google.+'
 
 install:
 #ant deps
