@@ -8,6 +8,6 @@ dependencies:
     
 test:
   override:
-    - echo "bintray.user=noexist" >> local.properties
-    - echo "bintray.apikey=1234567890abc" >> local.properties
+    - echo "bintray.user=noexist" >> library/local.properties
+    - echo "bintray.apikey=1234567890abc" >> library/local.properties
     - ./gradlew assembleDebug
