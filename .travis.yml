@@ -37,11 +37,11 @@ before_script:
 
 script:
 # aD first & install second.
+  - echo "bintray.user=noexist" >> local.properties
+  - echo "bintray.apikey=1234567890abc" >> local.properties
   - ./gradlew assembleDebug
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-  - echo "bintray.user=noexist" >> local.properties
-  - echo "bintray.apikey=1234567890abc" >> local.properties
   - ./gradlew iD
   
   - adb shell monkey -p org.bangbang.song.android.commonlib.demo -v 9999
