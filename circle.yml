@@ -4,6 +4,7 @@ machine:
     version: openjdk8
 dependencies:
   pre:
+  # keep update with build.gradle
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
     
 test:
@@ -13,3 +14,4 @@ test:
     - echo "bintray.user=noexist" >> library/local.properties
     - echo "bintray.apikey=1234567890abc" >> library/local.properties
     - ./gradlew assembleDebug
+    - cp -r sample/build/outputs $CIRCLE_ARTIFACTS
