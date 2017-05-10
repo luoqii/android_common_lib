@@ -1,4 +1,7 @@
 #https://circleci.com/docs/android
+machine:
+  java:
+    version: openjdk8
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter "build-tools-21.1.1"
