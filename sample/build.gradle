@@ -1,4 +1,9 @@
+group = 'org.bbs.android.commonlib.sample'
+version = getEnvValue("versionName", "1.0.0");
+def apVersion = getEnvValue("apVersion", "");
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.taobao.atlas'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
@@ -43,3 +48,69 @@ android {
         release.setRoot('build-types/release')
     }
 }
+
+atlas {
+
+    atlasEnabled true
+
+    tBuildConfig {
+        autoStartBundles = ['com.taobao.firstbundle'] //自启动bundle配置
+        outOfApkBundles = ['remotebundle']
+        preLaunch = 'com.taobao.demo.DemoPreLaunch'
+    }
+
+
+    patchConfigs {
+        debug {
+            createTPatch true
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            if (apVersion) {
+                baseApDependency "com.taobao.android.atlasdemo:AP-debug:${apVersion}@ap"
+                patchConfig patchConfigs.debug
+            }
+        }
+    }
+}
+
+
+String getEnvValue(key, defValue) {
+    def val = System.getProperty(key);
+    if (null != val) {
+        return val;
+    }
+    val = System.getenv(key);
+    if (null != val) {
+        return val;
+    }
+    return defValue;
+}
+
+tasks.whenTaskAdded {task ->
+    if (task.name.contains("DebugAndroidTest")) {
+        task.setEnabled(false);
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifact "${project.buildDir}/outputs/apk/${project.name}-debug.ap"
+            artifactId "AP-debug"
+        }
+    }
+}
+
