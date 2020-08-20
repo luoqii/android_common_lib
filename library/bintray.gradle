@@ -22,8 +22,10 @@ def getVersion(){
     }
 }
 
-task testGetVersion << {
-    print "log version: " + getVersion()
+task testGetVersion  {
+    doLast {
+        print "log version: " + getVersion()
+    }
 }
 
 install {

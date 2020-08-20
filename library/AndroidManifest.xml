@@ -9,9 +9,7 @@ N.B. BuildNumber < 100
     android:versionCode="1000101"
     android:versionName="1.0.1" >
 
-    <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="17" />
+    <uses-sdk android:targetSdkVersion="29" />
     <!-- disable keyguard in auto test. -->
     <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>-->
     <uses-permission android:name="android.permission.READ_LOGS"/>
