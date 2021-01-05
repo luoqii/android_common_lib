@@ -36,13 +36,17 @@ import android.widget.SimpleAdapter;
 /**
  * <p>
  * copy from android ApiDemo.
- * in android ApiDemo, a "supportv4" will add in the first page.
- * what i add:
+ *
+ *
  * <p>
- * 1) filter out all other app'd demos;
- * <p>
- * 2) shorten common prefix.
- * 
+ *     add intent-filter to every Activity
+ * <pre>
+ *&lt;intent-filter>
+ *     &lt;action android:name="android.intent.action.MAIN" />
+ *     &lt;category android:name="android.intent.category.SAMPLE_CODE" />
+ *&lt;/intent-filter>
+ *</pre>
+ *
  * @see #getInitPathPrefix()
  * @author bangbang.song@gmail.com
  *
@@ -55,6 +59,8 @@ ListActivity
 	private static final String EXTRA_PATH = "com.example.android.apis.Path";
 
     /**
+     * activities will be group by activity's label (split by "/"char).
+     *
      * @return path prefix in activity's label attribute in AndroidManifest.xml
      */
     protected abstract String getInitPathPrefix();
@@ -105,9 +111,9 @@ ListActivity
         for (int i = 0; i < len; i++) {
             ResolveInfo info = list.get(i);
             
-            if (!info.activityInfo.applicationInfo.packageName.contains(getPackageName())) {
-            	continue;
-            }
+//            if (!info.activityInfo.applicationInfo.packageName.contains(getPackageName())) {
+//            	continue;
+//            }
             
             CharSequence labelSeq = info.loadLabel(pm);
             String label = labelSeq != null

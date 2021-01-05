@@ -6,8 +6,8 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.0'
     compile 'org.bbs.android:log:0.5'
 
-    compile 'org.bbs.android.commonlib:commonlib:0.3'
-//    compile project(':commonlib')
+//    compile 'org.bbs.android.commonlib:commonlib:0.3'
+    compile project(':commonlib')
 }
 
 android {
